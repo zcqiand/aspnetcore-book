@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>ChatLab 聊天室</title>
+  <style>
+    body { font-family: sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    #status { font-size: 0.85rem; color: #888; }
+    #messages { list-style: none; padding: 0; border: 1px solid #ddd; min-height: 200px;
+                max-height: 400px; overflow-y: auto; }
+    #messages li { padding: 0.35rem 0.75rem; border-bottom: 1px dashed #eee; }
+    #form { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+    #form input { flex: 1; padding: 0.4rem; }
+  </style>
+</head>
+<body>
+  <h1>ChatLab 聊天室</h1>
+  <p id="status">连接中……</p>
+  <ul id="messages"></ul>
+  <form id="form">
+    <input id="user" placeholder="发言人" value="访客" required>
+    <input id="text" placeholder="输入消息" required>
+    <button type="submit">发送</button>
+  </form>
+
+  <!-- 浏览器客户端库以本地静态文件落地：js/signalr.min.js 就在本工程 wwwroot 里，
+       页面对任何第三方站点零依赖，离线也能跑。 -->
+  <script src="js/signalr.min.js"></script>
+  <script>
+    const status = document.getElementById('status');
+    const list = document.getElementById('messages');
+
+    function append(line) {
+      const li = document.createElement('li');
+      li.textContent = line;
+      list.appendChild(li);
+      list.scrollTop = list.scrollHeight;
+    }
+
+    // withAutomaticReconnect 一句：连接意外断开后按内置节奏自动重试
+    // （约 0/2/10/30 秒四轮），期间触发 onreconnecting，成功后触发 onreconnected。
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl('/hubs/chat')
+      .withAutomaticReconnect()
+      .build();
+
+    // 服务端推过来的消息统一从 ReceiveMessage 进：方向是服务端 → 客户端。
+    connection.on('ReceiveMessage', (user, message, time) => {
+      append(`[${new Date(time).toLocaleTimeString()}] ${user}: ${message}`);
+    });
+
+    connection.onreconnecting(err => {
+      status.textContent = '连接断开, 正在自动重连……';
+      console.log('onreconnecting:', err && err.message);
+    });
+
+    connection.onreconnected(id => {
+      status.textContent = '已重连, 新连接 id: ' + id;
+      console.log('onreconnected, 新连接 id:', id);
+    });
+
+    connection.onclose(err => {
+      status.textContent = '连接已关闭(自动重连未接回)';
+      console.log('onclose:', err && err.message);
+    });
+
+    async function start() {
+      try {
+        await connection.start();
+        status.textContent = '已连接, 本端连接 id: ' + connection.connectionId;
+        console.log('已连接, 本端连接 id:', connection.connectionId);
+
+        // 探针钩子: 页面带 ?probe=名字 打开时自动发一条消息后停在页面上,
+        // 专供无头浏览器验证双向链路使用, 正常使用不触发。
+        const probe = new URLSearchParams(location.search).get('probe');
+        if (probe) await send(probe, '探针页自动发言: 双向链路验证');
+      } catch (err) {
+        status.textContent = '连接失败: ' + err.message;
+        console.log('连接失败:', err.message);
+      }
+    }
+
+    // 客户端调用服务端方法: 方向是客户端 → 服务端, 经 Hub 广播后绕回本页。
+    async function send(user, text) {
+      try {
+        await connection.invoke('SendMessage', user, text);
+      } catch (err) {
+        append('[发送失败] ' + err.message);
+        console.log('invoke 失败:', err.message);
+      }
+    }
+
+    document.getElementById('form').addEventListener('submit', e => {
+      e.preventDefault();
+      const user = document.getElementById('user').value.trim();
+      const text = document.getElementById('text').value.trim();
+      if (!user || !text) return;
+      send(user, text);
+      document.getElementById('text').value = '';
+    });
+
+    start();
+  </script>
+</body>
+</html>

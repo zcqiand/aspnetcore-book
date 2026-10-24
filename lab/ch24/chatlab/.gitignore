@@ -1,0 +1,8 @@
+# .NET 构建产物
+bin/
+obj/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db
