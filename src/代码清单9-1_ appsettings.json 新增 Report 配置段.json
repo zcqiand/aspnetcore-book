@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Report": {
+    "Title": "LifetimeLab 生命周期报表",
+    "MaxRows": 100,
+    "RetryCount": 3,
+    "DefaultFormat": "csv"
+  }
+}

@@ -1,0 +1,41 @@
+# 约定：$CODE=当前授权码、$TOK=访问令牌、$RT=刷新令牌（值不录；令牌·cookie·授权码回显一律前 12 字符加掩码）
+# 拍1 登录（alice 为 dev seed 演示账号；口令 dev-only 零复录）
+curl -s -X POST http://127.0.0.1:5104/api/v1/auth/login -H "Content-Type: application/json" \
+  -d '{"username":"alice","password":"<dev seed 演示口令，零复录>","clientId":"lab-management"}'   # → 200
+# 代表回显·拍1（要点，掩码）：accessToken eyJhbGciOiJI...<masked> / refreshToken refresh-0000...<masked>
+# Set-Cookie: saasSession=kiyrjVTfLJ2I...<masked>（HttpOnly，cookie jar 实抓）
+# 拍2 注册第三方应用（clientSecret 为虚构演示值，非真实凭据）
+curl -s -X POST http://127.0.0.1:5104/api/v1/admin/clients --data-binary @b2.json   # → 200
+# 请求体：{"clientId":"demo-app-28","clientName":"demo-app-28 (ch28 fictional demo)",
+#          "clientSecret":"demo-secret-28-fictional","grantTypes":"authorization_code,refresh_token",
+#          "redirectUris":"http://localhost:4028/callback","scopes":"lab.read","autoApprove":false}
+# 代表回显·拍2：未传 validity 两字段，响应回显家族默认 accessTokenValidity:3600 / refreshTokenValidity:86400；
+#              clientSecret 只入库不回传（响应 DTO 无该字段）
+# 拍3 authorize 签码（携登录态 cookie）
+curl -s -X POST http://127.0.0.1:5104/api/v1/oauth/authorize -b cookies.txt -H "Content-Type: application/json" \
+  -d '{"clientId":"demo-app-28","redirectUri":"http://localhost:4028/callback","responseType":"code","scope":"lab.read","state":"ch28-state-demo"}'   # → 200
+# 代表回显·拍3：{"code":"saas-code-17...<masked>","state":"ch28-state-demo"}
+#   （码值 46 字符，saas-code-{ts}-{rand} 格式；state 原样回显=Response3.State 透传）
+# 错误拍·3b 错 client_id → 400
+#   {"code":"INVALID_REQUEST","message":"INVALID_CLIENT: clientId=no-such-app-28 not registered"}
+# 错误拍·3c redirect_uri 不在白名单 → 400
+#   {"code":"INVALID_REQUEST","message":"INVALID_REDIRECT_URI: http://evil.example.com/callback not in app.redirect_uris"}
+# 错误拍体例：OAuth 语义码走 message 字段，外层信封 code 统一是 INVALID_REQUEST 壳
+# 拍4 token 交换（第三方应用后端直连，零 cookie；clientSecret 故意填错仍过——dev 不验，演示仓口径）
+curl -s -X POST http://127.0.0.1:5104/api/v1/oauth/token -H "Content-Type: application/json" \
+  -d '{"grantType":"authorization_code","code":"'"$CODE"'","clientId":"demo-app-28","clientSecret":"totally-wrong-secret","redirectUri":"http://localhost:4028/callback"}'   # → 200
+# 代表回显·拍4：accessToken eyJhbGciOiJI...<masked>（409 字符三段）/ refreshToken saas-rt-0000...<masked>
+#              （81 字符，saas-rt- 形态）/ expiresIn:3600 / scope:lab.read / clientId:demo-app-28
+# 拍4b 重放同码 → 400 {"code":"INVALID_REQUEST","message":"INVALID_GRANT: code not found"}
+#   （DB 侧拍3a 的 code 行已消失：删除即消费，重放报文连报错文案都与清单28-8 注释的预言逐字吻合）
+# 拍5 访问令牌解码（进程内 base64url，全文零落盘）：三段实数；header {"alg":"HS256","typ":"JWT"}；
+#   payload 要点 sub / tenant_id / jti / iss / aud / nbf / exp，exp-nbf=3600s；
+#   与第 27 章三段结构口径逐项对上，claims 与签发构造吻合（实抓未见 iat，签发端未写入；清单28-1 注释的 iat 属标准字段列目）
+# 拍6 刷新轮换（server-to-server）
+curl -s -X POST http://127.0.0.1:5104/api/v1/oauth/token -H "Content-Type: application/json" \
+  -d '{"grantType":"refresh_token","refreshToken":"'"$RT"'","clientId":"demo-app-28"}'   # → 200
+# 代表回显·拍6：新令牌对到手，refreshToken 新≠旧实测 True
+# 拍7 旧刷新令牌重放实测（拿拍4 的旧 refreshToken 重放）
+curl -s -X POST http://127.0.0.1:5104/api/v1/oauth/token -H "Content-Type: application/json" \
+  -d '{"grantType":"refresh_token","refreshToken":"<拍4 旧 refreshToken>","clientId":"demo-app-28"}'   # → 200
+# 全链七拍加三笔错误码拍毕；验证毕隔离库 saas_ch28 整库删除，pg_database 复查 0 行，环境清场

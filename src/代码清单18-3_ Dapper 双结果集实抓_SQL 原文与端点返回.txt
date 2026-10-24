@@ -1,0 +1,19 @@
+（真机实抓; N=10 笔订单每单 3 条明细, 数据形态与第 17 章同构）
+
+发出的 SQL 原文, 两条 SELECT 拼在一条批量命令里:
+SELECT "Id", "OrderNumber", "Customer", "Amount" FROM "Orders" ORDER BY "Id";
+SELECT "Id", "OrderId", "Product", "Quantity", "UnitPrice" FROM "OrderItems" ORDER BY "Id";
+
+GET /orders/dapper/all 返回正文全文:
+Dapper 双结果集读取 10 笔订单, 明细合计 30 条, 耗时 71 毫秒。
+订单1(长乐杂货) 明细 3 条
+订单2(南山果铺) 明细 3 条
+订单3(青屿生鲜) 明细 3 条
+订单4(长乐杂货) 明细 3 条
+订单5(南山果铺) 明细 3 条
+订单6(青屿生鲜) 明细 3 条
+订单7(长乐杂货) 明细 3 条
+订单8(南山果铺) 明细 3 条
+订单9(青屿生鲜) 明细 3 条
+订单10(长乐杂货) 明细 3 条
+（两处观察点见正文; 订单与明细各占一条 SELECT, 明细挂回各单名下的组装在内存里完成）

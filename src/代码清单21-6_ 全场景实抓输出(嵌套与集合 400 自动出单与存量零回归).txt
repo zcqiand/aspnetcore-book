@@ -1,0 +1,38 @@
+（格式示例, 输出均为真机实抓; 响应头部仅首发展示, 后发同款省略; traceId 仅首处照录）
+（请求体均为预存 UTF-8 的 JSON 文件经 --data-binary 注入, 字段形态见清单21-5 的模型）
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/a-nested-bad.json http://localhost:6000/api/v1/customers
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Address.City":["联系城市不能为空"]},"traceId":"00-fd8d846bcd490552d5be3c58f7583d74-b2cfe7380f4e6a26-00"}
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/a-coll-bad.json http://localhost:6000/api/v1/customers
+HTTP/1.1 400 Bad Request
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Contacts[0].Phone":["备用电话须为 11 位数字"]},"traceId":"00-1e2ff20461a3fcc6dde2320c8f3a847a-bf001ad8ccd630df-00"}
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/a-missing-name.json http://localhost:6000/api/v1/customers
+HTTP/1.1 400 Bad Request
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["客户名不能为空"]},"traceId":"00-ffd7d5f5c37558330c8f64974a5b8f4b-800d6333f319d400-00"}
+（数据注解与 FluentValidation 双规则在案, errors.Name 数组里只有一条, 无重复文案）
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/a-legal.json http://localhost:6000/api/v1/customers
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+（头部同上, 此处省略）
+Location: http://localhost:6000/api/v1/customers/1
+
+{"id":1,"name":"望江茶行","email":"tea@wangjiang.example","address":{"city":"临江市","street":"望江路 88 号"},"contacts":[{"phone":"13911112222","label":"采购"}]}
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/api/v1/customers/99
+HTTP/1.1 404 Not Found
+Content-Type: application/problem+json; charset=utf-8
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"资源不存在","status":404,"detail":"客户 99 不存在。","traceId":"00-3cd33ca5b5d4db29b7f7ae8f6bf14870-8920a42a9f900ab3-00"}

@@ -1,0 +1,28 @@
+（格式示例, 时间戳为占位, 输出与列形态为真机实抓; 版本号以 x 代替）
+
+PS> dotnet ef migrations add AddOrderRemark
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+
+PS> dotnet ef database update
+Applying migration '20260929062558_AddOrderRemark'.
+      ALTER TABLE "Orders" ADD "Remark" text NOT NULL DEFAULT '';
+      INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+      VALUES ('20260929062558_AddOrderRemark', '8.0.x');
+Done.
+
+生成的迁移 Up() 本体关键行:
+      Id = table.Column<long>(type: "bigint", nullable: false)
+          .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+      OrderNumber = table.Column<string>(type: "text", nullable: false),
+      Amount = table.Column<decimal>(type: "numeric", nullable: false)
+
+information_schema 里看到的列形态:
+column_name | data_type | column_default
+----------------------------------------
+Id | bigint |
+OrderNumber | text |
+Customer | text |
+Amount | numeric |
+Remark | text | ''::text

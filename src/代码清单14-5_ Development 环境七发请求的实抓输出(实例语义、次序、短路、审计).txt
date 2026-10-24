@@ -1,0 +1,82 @@
+（格式示例, 时间为占位值, 七发响应与终端日志均为真机实抓; 响应头部仅首发展示, 后六发头部同形态, 状态行与 Content-Type 照录,
+ Date 等头部各行照旧省略; 应用终端日志按发生顺序整段照录, 启动段只留首启 warn 与监听、环境各行, 其余启动行省略）
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/probe
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（此处省略数行头部…）
+
+端点已执行, 请求作用域服务 Id = 3f3b8b04-d3c9-4042-9cb6-b6aa79075f67
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/probe
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+端点已执行, 请求作用域服务 Id = 18691d9b-15d7-4eff-bd61-41a9e88de9d2
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/chain
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+端点本体已执行, 次序看应用终端日志。
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/short
+HTTP/1.1 418 I'm a teapot
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+过滤器拦截: 演示端点不对外服务。
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/noshort
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+端点本体: 未短路, 一路放行。
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/orders/2
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+订单2: 阿里山茶行 x1
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/orders/99
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+（头部同上, 此处省略）
+
+"订单 99 不存在, 可查的编号是 1 到 3。"
+（404 案正是给审计的对账用的: 下一行终端日志里, 审计离开行记到的就是 404 这个真码,
+ 这正是清单14-3 把离开日志挂在 Response.OnStarting 回调里的用意——拿到的必须是调用方真正收到的码）
+
+（应用终端日志: 四枚 Id 两两成对——过滤器实例 Id 请求内前后一致, 跨请求更换;
+ 注入的作用域服务 Id 与端点回显逐字相同; [chain] 四行进出配对给出次序结论; [short] 一行之后端点本体再无动静）
+warn: Microsoft.AspNetCore.Server.Kestrel[0]
+      Overriding address(es) 'http://localhost:5199'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5800
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+（首启 warn 两行: 模板登记的随机端口被清单14-2 覆盖, 第 6 章 6.4 节解释过的预期现象）
+[probe] 过滤器实例 Id = f413088f-7eb4-448b-801e-289f9174507f, 注入的作用域服务 Id = 3f3b8b04-d3c9-4042-9cb6-b6aa79075f67
+[probe] next 返回, 过滤器实例 Id = f413088f-7eb4-448b-801e-289f9174507f
+[probe] 过滤器实例 Id = 54159066-cb0a-4d1b-b012-725c7ff5a4fd, 注入的作用域服务 Id = 18691d9b-15d7-4eff-bd61-41a9e88de9d2
+[probe] next 返回, 过滤器实例 Id = 54159066-cb0a-4d1b-b012-725c7ff5a4fd
+[chain] 外层过滤器进入
+[chain] 内层过滤器进入
+[chain] 内层过滤器离开
+[chain] 外层过滤器离开
+[short] 短路生效, next 未被调用
+info: AuditTrailFilter[0]
+      审计进入: GET /orders/2
+info: AuditTrailFilter[0]
+      审计离开: GET /orders/2 -> 200
+info: AuditTrailFilter[0]
+      审计进入: GET /orders/99
+info: AuditTrailFilter[0]
+      审计离开: GET /orders/99 -> 404
+（次序与短路的读法: 进入按注册序, 离开按逆序; [short] 一行后没有任何端点本体的动静, 短路生效;
+ 两路交付物的审计行成对出现, 离开行各记真码 200 与 404）

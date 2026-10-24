@@ -1,0 +1,22 @@
+（四发各一行命令 dotnet run -- --scenario=<名>, 此处摘录关键回显; 异常类名照实抓原样）
+
+--scenario=missing-member-assert（漏配成员, 主动调了配置校验）
+  炸点: AutoMapper.AutoMapperConfigurationException
+  消息(摘): Unmapped members were found. ...
+            Unmapped properties: ContactPhones
+
+--scenario=missing-member-noassert（同一个漏配, 没调校验）
+未炸,静默出了结果:
+  HomeCity=临江市, FullAddress=临江市 望江路 88 号, ContactPhones=[]
+
+--scenario=wrong-source（把客户名配到邮箱位上）
+AssertConfigurationIsValid: 通过(没拦住)
+静默出结果: ContactEmail=望江茶行(应装邮箱却装了客户名)
+
+--scenario=no-profile（空配置直接映射）
+AssertConfigurationIsValid: 空配置也放行
+  炸点: AutoMapper.AutoMapperMappingException
+  消息: Missing type map configuration or unsupported mapping.
+
+（编译层一发: 规则里字段名拼错一个字母, 保存即红）
+error CS1061: “Customer”未包含“Emaill”的定义...(找不到该名称的可访问扩展方法)

@@ -1,0 +1,48 @@
+（格式示例, 时间与毫秒数为占位值, 六发响应均为真机实抓; 六个 200 的 Content-Type 同为 text/plain; charset=utf-8, 头部仅首发展示）
+
+PS D:\Code\RouteLab> dotnet run
+warn: Microsoft.AspNetCore.Server.Kestrel[0]
+      Overriding address(es) 'http://localhost:5266'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5600
+（首启 warn 两行: launchSettings.json 里模板登记的旧端口 5266 被配置覆盖, 第 6 章 6.4 节解释过, 属预期现象;
+ 应用启动的其余各行与前几章同义, 此处省略; 程序停驻等请求）
+
+（另开终端逐条执行代码清单12-5, 六发 200 的状态行与正文如下）
+PS D:\Code\RouteLab> curl -i http://localhost:5600/
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（此处省略数行头部…）
+
+这是 RouteLab 的入口, 路由表上的路径: /orders 、 /orders/1 、 /orders/active 、 /orders/page 。
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+订单列表: 当前共 3 笔在库。
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/2
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+订单2: 阿里山茶行 x1 (已签收)
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/active
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+进行中的订单: 订单3: 青屿生鲜 x5。
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/page
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+订单列表: 第 1 页, 当前共 3 笔在库。
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/page/2
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+订单列表: 第 2 页, 当前共 3 笔在库。
+（请求期间应用终端无新增日志行: Microsoft.AspNetCore 前缀的框架日志被清单12-3 里设为 Warning 的级别闸拦下）

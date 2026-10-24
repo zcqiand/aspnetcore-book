@@ -1,0 +1,12 @@
+（真机实抓; 与无锁轮背靠背连发, 同样先清场再放 24 条并发进程,
+ 本轮走带锁路径 GET /experiment/order/1?useLock=true）
+
+=== reset done, launching 24 concurrent curl (LOCK=ON) ===
+WALL_MS=518
+stats:
+{"backfillCount":1}
+DB       1
+L1      23
+
+（回源计数停在 1: 只放一个请求进库补数据; 其余 23 路在锁上等到补完,
+ 应答 source 字段全部标着 L1; 墙钟 518 毫秒, 压回的 23 次往返就是差值的来路）

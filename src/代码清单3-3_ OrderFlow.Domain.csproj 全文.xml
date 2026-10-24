@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- TargetFramework 决定编译产物跑在哪个运行时之上: net8.0 即第 1 章选定的长期支持版 -->
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- ImplicitUsings 打开后编译器自动补 System 与常用集合命名空间, 源文件里少写一摞 using -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Nullable 打开可空引用类型: 第 2 章立的 NRT 心智从这里落地, null 隐患被挡在编译期 -->
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- 没有任何 PackageReference: 零依赖也是依赖声明的一部分, 本章只用模板自带能力, 不引入第三方包 -->
+</Project>

@@ -1,0 +1,45 @@
+（格式示例, 实例 ID 与创建时刻均为占位值, 以读者机器实际输出为准; 端口 5400 来自清单8-4 的 --urls 参数）
+
+PS D:\Code\LifetimeLab> curl http://localhost:5400/report
+（每个请求进入时, 运行应用的那个终端都打一行进入日志, 这里只展示第 1 次请求的, 第 2、3 次的同款行从略）
+info: LifetimeLab[0]
+      /report 请求进入, 开始生成生命周期报告
+
+（第 1 次请求的响应正文, 共 8 行）
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Scoped 实例 ID=6b2d91e4(创建于 09:15:42.191)
+Scoped 实例 ID=6b2d91e4(创建于 09:15:42.191)
+Transient 实例 ID=8b4f2ea6(创建于 09:15:42.192)
+Transient 实例 ID=3e9d7c51(创建于 09:15:42.192)
+手动作用域第 1 次解析: Scoped 实例 ID=4d7e2b98(创建于 09:15:42.196)
+手动作用域第 2 次解析: Scoped 实例 ID=4d7e2b98(创建于 09:15:42.196)
+
+PS D:\Code\LifetimeLab> curl http://localhost:5400/report
+
+（第 2 次请求的响应正文）
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Scoped 实例 ID=c8e4a753(创建于 09:15:48.302)
+Scoped 实例 ID=c8e4a753(创建于 09:15:48.302)
+Transient 实例 ID=f7a2b930(创建于 09:15:48.303)
+Transient 实例 ID=5c8e1d47(创建于 09:15:48.303)
+手动作用域第 1 次解析: Scoped 实例 ID=e5a1c840(创建于 09:15:48.306)
+手动作用域第 2 次解析: Scoped 实例 ID=e5a1c840(创建于 09:15:48.306)
+
+PS D:\Code\LifetimeLab> curl http://localhost:5400/report
+
+（第 3 次请求的响应正文）
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Singleton 实例 ID=a3f8c215(创建于 09:15:42.187)
+Scoped 实例 ID=1f9b3d26(创建于 09:15:55.410)
+Scoped 实例 ID=1f9b3d26(创建于 09:15:55.410)
+Transient 实例 ID=2d6a94fb(创建于 09:15:55.411)
+Transient 实例 ID=b1e3f580(创建于 09:15:55.411)
+手动作用域第 1 次解析: Scoped 实例 ID=92c6f317(创建于 09:15:55.414)
+手动作用域第 2 次解析: Scoped 实例 ID=92c6f317(创建于 09:15:55.414)
+
+（三条规律, 逐位可对: 1. Singleton 的 ID 三次请求全程是 a3f8c215, 创建时刻也停在 09:15:42.187,
+ 即第 1 次请求首次用到它的那一刻; 2. Scoped 每请求一个新 ID, 同请求内两行相同,
+ 手动作用域又是一个更新的 ID(创建时刻晚于同请求的请求作用域), 但作用域内两次解析相同;
+ 3. Transient 两个参数位各解析一次, 六次打印六个互不相同的 ID, 同一请求内的两枚也各是各的）

@@ -1,0 +1,23 @@
+（格式示例, 三发 404 均为真机实抓, 状态行同为 404 Not Found, Content-Type 同为 application/json; charset=utf-8, 头部仅首发展示）
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/99
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+（此处省略数行头部…）
+
+"订单 99 不存在, 可查的编号是 1 到 3。"
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/orders/abc
+HTTP/1.1 404 Not Found
+（头部同上, 此处省略）
+
+"你访问的路径不存在, 先试试 /orders/1 。"
+
+PS D:\Code\RouteLab> curl -i http://localhost:5600/whatever
+HTTP/1.1 404 Not Found
+（头部同上, 此处省略）
+
+"你访问的路径不存在, 先试试 /orders/1 。"
+（三种 404 状态码一致, 人话只分两路: /orders/99 的出自详情端点自己的 Results.NotFound, 带可查编号范围;
+ 后两发同出 MapFallback, 同一句指路人话, 出处对照即代码清单12-4 第 3 行注释所讲;
+ /no-such-path 与 /whatever 同属路由表之外的未登记路径, 得到的 404 与最后一发逐字相同）

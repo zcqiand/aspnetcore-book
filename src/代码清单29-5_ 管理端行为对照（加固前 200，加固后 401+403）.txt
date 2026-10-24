@@ -1,0 +1,8 @@
+# 仓现状实例：裸 POST 无凭证打管理端点（body 为虚构演示值）
+curl -s -X POST http://127.0.0.1:5104/api/v1/admin/clients -H "Content-Type: application/json" \
+  -d '{"clientId":"demo-app-29","clientName":"demo-app-29 (ch29 fictional demo)","clientSecret":"demo-secret-29-fictional"}'   # → 200
+# 代表回显：clientId=demo-app-29 / status=1 / accessTokenValidity=3600 / refreshTokenValidity=86400
+# （clientSecret 只入库不回传；28.6 披露的实机复核成立）
+# 演示副本（管理面挂授权策略轮廓后）对照两段：
+# 段1 裸 POST 无凭证 → 401（未认证 challenge，JwtBearer 框架正解）
+# 段2 持有效令牌但缺 role=platform_admin 声明（seed 用户登录所得，令牌零复录）→ 403（已认证，策略拒绝）

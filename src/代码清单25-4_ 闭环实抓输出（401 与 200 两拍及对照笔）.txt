@@ -1,0 +1,55 @@
+（输出均为真机实抓；头部仅首拍全录，后拍同款省略；Date 各拍照录；
+ 本工程无诊断上下文，契约正文不含 traceId 字段，属真机原样）
+
+PS D:\Code\AuthLab> curl -s -i http://localhost:6400/me
+HTTP/1.1 401 Unauthorized
+Content-Type: application/problem+json
+Date: Wed, 30 Sep 2026 09:39:41 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401}
+（拍①：未登录，契约体 401，状态与标题一眼可读）
+
+PS D:\Code\AuthLab> curl -s -i -c cookies.txt -X POST -d 'username=demo_user&password=demo-pass-123456' http://localhost:6400/login
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Wed, 30 Sep 2026 09:39:41 GMT
+Server: Kestrel
+Cache-Control: no-cache,no-store
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Pragma: no-cache
+Set-Cookie: .AspNetCore.Cookies=CfDJ8CITnKghlLZAoeMQuTqvdGxLvr52rkwWwOtHrdPzAv7P8Q3hdSMK16IVDeOsAbLmmuwSd69TWiqvUNmbPlDTAjYn2yV6hiPrCXScPySlvlh4I4QWYE9CLpBasr1nW65mcWVquVoF0QbS_UDSsAlylf8Ge19OVo1_0Cqa5wkUuCLshj8DGPX7y5y7EeYAkDKKXn-rHi1qGTz71mdfEmwJrn4sGUPoZwuTtc7rD14OELAJLVQHimXa0cMNWgWEsvzoxuChVt1O4lHyqt8JWIHzpqJbFt2png5lMizoQcpYWrPM; path=/; samesite=lax; httponly
+Transfer-Encoding: chunked
+
+{"message":"logged in as demo_user"}
+（拍②：登录成功，Set-Cookie 下发凭证；cookie 值为 DataProtection 加密票据，本机用户密钥环加密，进程重启后仍可解密，凭据失效由登出与过期控制，非任何真实凭据）
+
+PS D:\Code\AuthLab> curl -s -i -b cookies.txt http://localhost:6400/me
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+（头部同上，此处省略）
+
+{"user":"demo_user"}
+（拍③：jar 里的凭证自动带回，同一端点改口 200，身份名回读为登录时的用户名）
+
+PS D:\Code\AuthLab> curl -s -i -X POST -d 'username=demo_user&password=wrong-demo-pass' http://localhost:6400/login
+HTTP/1.1 401 Unauthorized
+Content-Type: application/problem+json
+（头部同上，此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.2","title":"Unauthorized","status":401}
+（对照一笔：错误凭据，端点自己回契约体 401）
+
+PS D:\Code\AuthLab> curl -s -i -b cookies.txt -c cookies.txt -X POST http://localhost:6400/logout
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+（头部同上，此处省略）
+Set-Cookie: .AspNetCore.Cookies=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; samesite=lax; httponly
+
+{"message":"logged out"}
+（对照二笔：登出，Set-Cookie 用 1970 年的过期时间把凭证作废）
+
+PS D:\Code\AuthLab> curl -s -o /dev/null -w 'http_code=%{http_code}\n' -b cookies.txt http://localhost:6400/me
+http_code=401
+（登出后再打：凭证已作废，落回 401）

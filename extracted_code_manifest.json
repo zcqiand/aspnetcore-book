@@ -1,0 +1,1962 @@
+[
+  {
+    "title": "代码清单1-1: 校验 .NET SDK 安装",
+    "lang": "bash",
+    "chapter_file": "chapter-001.md",
+    "line": 87,
+    "extracted_file": "src\\代码清单1-1_ 校验 .NET SDK 安装.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单1-2: 创建并运行第一个控制台程序",
+    "lang": "bash",
+    "chapter_file": "chapter-001.md",
+    "line": 95,
+    "extracted_file": "src\\代码清单1-2_ 创建并运行第一个控制台程序.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单1-3: 环境自检小工具完整代码（Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-001.md",
+    "line": 107,
+    "extracted_file": "src\\代码清单1-3_ 环境自检小工具完整代码（Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单1-4: 环境自检小工具运行输出示例",
+    "lang": "bash",
+    "chapter_file": "chapter-001.md",
+    "line": 159,
+    "extracted_file": "src\\代码清单1-4_ 环境自检小工具运行输出示例.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单2-1: Java 版订单统计（Stream）",
+    "lang": "java",
+    "chapter_file": "chapter-002.md",
+    "line": 34,
+    "extracted_file": "src\\代码清单2-1_ Java 版订单统计（Stream）.java",
+    "source": null
+  },
+  {
+    "title": "代码清单2-2: Python 版订单统计（推导式）",
+    "lang": "python",
+    "chapter_file": "chapter-002.md",
+    "line": 87,
+    "extracted_file": "src\\代码清单2-2_ Python 版订单统计（推导式）.py",
+    "source": null
+  },
+  {
+    "title": "代码清单2-3: 创建 LanguageTour 控制台项目",
+    "lang": "bash",
+    "chapter_file": "chapter-002.md",
+    "line": 148,
+    "extracted_file": "src\\代码清单2-3_ 创建 LanguageTour 控制台项目.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单2-4: C# LINQ 版订单统计（LanguageTour/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-002.md",
+    "line": 156,
+    "extracted_file": "src\\代码清单2-4_ C# LINQ 版订单统计（LanguageTour_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单2-5: 接口与泛型仓储定义（OrderRepository.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-002.md",
+    "line": 228,
+    "extracted_file": "src\\代码清单2-5_ 接口与泛型仓储定义（OrderRepository.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单2-6: 仓储实现与主程序（OrderMiniApp/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-002.md",
+    "line": 299,
+    "extracted_file": "src\\代码清单2-6_ 仓储实现与主程序（OrderMiniApp_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单2-7: OrderMiniApp 三次运行格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-002.md",
+    "line": 394,
+    "extracted_file": "src\\代码清单2-7_ OrderMiniApp 三次运行格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单3-1: 创建 OrderFlow 解决方案并挂载三个项目",
+    "lang": "bash",
+    "chapter_file": "chapter-003.md",
+    "line": 51,
+    "extracted_file": "src\\代码清单3-1_ 创建 OrderFlow 解决方案并挂载三个项目.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单3-2: 建立项目间引用",
+    "lang": "bash",
+    "chapter_file": "chapter-003.md",
+    "line": 88,
+    "extracted_file": "src\\代码清单3-2_ 建立项目间引用.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单3-3: OrderFlow.Domain.csproj 全文",
+    "lang": "xml",
+    "chapter_file": "chapter-003.md",
+    "line": 116,
+    "extracted_file": "src\\代码清单3-3_ OrderFlow.Domain.csproj 全文.xml",
+    "source": null
+  },
+  {
+    "title": "代码清单3-4: OrderFlow.Domain 类库核心（OrderPricer.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-003.md",
+    "line": 142,
+    "extracted_file": "src\\代码清单3-4_ OrderFlow.Domain 类库核心（OrderPricer.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单3-5: OrderFlow.App 主程序消费类库（Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-003.md",
+    "line": 191,
+    "extracted_file": "src\\代码清单3-5_ OrderFlow.App 主程序消费类库（Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单3-6: OrderFlow.Tests 单元测试（OrderPricerTests.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-003.md",
+    "line": 236,
+    "extracted_file": "src\\代码清单3-6_ OrderFlow.Tests 单元测试（OrderPricerTests.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单3-7: dotnet build 与 dotnet test 输出示例",
+    "lang": "text",
+    "chapter_file": "chapter-003.md",
+    "line": 301,
+    "extracted_file": "src\\代码清单3-7_ dotnet build 与 dotnet test 输出示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单4-1: 用 curl -v 观察 GET 请求的通信过程",
+    "lang": "bash",
+    "chapter_file": "chapter-004.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单4-1_ 用 curl -v 观察 GET 请求的通信过程.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单4-2: psql 建库建表并插入种子数据",
+    "lang": "bash",
+    "chapter_file": "chapter-004.md",
+    "line": 129,
+    "extracted_file": "src\\代码清单4-2_ psql 建库建表并插入种子数据.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单4-3: 四句口诀最小集（临时行增改删）",
+    "lang": "sql",
+    "chapter_file": "chapter-004.md",
+    "line": 154,
+    "extracted_file": "src\\代码清单4-3_ 四句口诀最小集（临时行增改删）.sql",
+    "source": null
+  },
+  {
+    "title": "代码清单4-4: 创建 HttpSqlDemo 项目并安装 Npgsql",
+    "lang": "bash",
+    "chapter_file": "chapter-004.md",
+    "line": 187,
+    "extracted_file": "src\\代码清单4-4_ 创建 HttpSqlDemo 项目并安装 Npgsql.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单4-5: Npgsql 最小连接与查询主程序（HttpSqlDemo/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-004.md",
+    "line": 201,
+    "extracted_file": "src\\代码清单4-5_ Npgsql 最小连接与查询主程序（HttpSqlDemo_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单5-1: 创建 FirstWebApp 项目并首次运行",
+    "lang": "bash",
+    "chapter_file": "chapter-005.md",
+    "line": 67,
+    "extracted_file": "src\\代码清单5-1_ 创建 FirstWebApp 项目并首次运行.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单5-2: 空模板自带的 Program.cs",
+    "lang": "csharp",
+    "chapter_file": "chapter-005.md",
+    "line": 96,
+    "extracted_file": "src\\代码清单5-2_ 空模板自带的 Program.cs.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单5-3: 手写版 Program.cs（逐行注解, 本章留存物底稿）",
+    "lang": "csharp",
+    "chapter_file": "chapter-005.md",
+    "line": 116,
+    "extracted_file": "src\\代码清单5-3_ 手写版 Program.cs（逐行注解, 本章留存物底稿）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单5-4: 用 curl 验证两种响应",
+    "lang": "bash",
+    "chapter_file": "chapter-005.md",
+    "line": 148,
+    "extracted_file": "src\\代码清单5-4_ 用 curl 验证两种响应.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单6-1: 带检查点日志的 Program.cs（FirstWebApp/Program.cs 完整代码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-006.md",
+    "line": 96,
+    "extracted_file": "src\\代码清单6-1_ 带检查点日志的 Program.cs（FirstWebApp_Program.cs 完整代码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单6-2: 经 appsettings.json 配置 Kestrel 监听端口（摘录）",
+    "lang": "json",
+    "chapter_file": "chapter-006.md",
+    "line": 145,
+    "extracted_file": "src\\代码清单6-2_ 经 appsettings.json 配置 Kestrel 监听端口（摘录）.json",
+    "source": null
+  },
+  {
+    "title": "代码清单7-1: 三个中间件与升级版 Program.cs（FirstWebApp/Program.cs 完整代码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-007.md",
+    "line": 53,
+    "extracted_file": "src\\代码清单7-1_ 三个中间件与升级版 Program.cs（FirstWebApp_Program.cs 完整代码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单7-2: 用 curl 验证正常与异常两条路径",
+    "lang": "bash",
+    "chapter_file": "chapter-007.md",
+    "line": 135,
+    "extracted_file": "src\\代码清单7-2_ 用 curl 验证正常与异常两条路径.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单7-3: 根路径请求的管道日志输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-007.md",
+    "line": 152,
+    "extracted_file": "src\\代码清单7-3_ 根路径请求的管道日志输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单7-4: /boom 请求的管道日志输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-007.md",
+    "line": 191,
+    "extracted_file": "src\\代码清单7-4_ _boom 请求的管道日志输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单7-5: 删掉异常兜底中间件后 /boom 的输出对比",
+    "lang": "text",
+    "chapter_file": "chapter-007.md",
+    "line": 219,
+    "extracted_file": "src\\代码清单7-5_ 删掉异常兜底中间件后 _boom 的输出对比.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单8-1: 创建 LifetimeLab 实验项目",
+    "lang": "bash",
+    "chapter_file": "chapter-008.md",
+    "line": 49,
+    "extracted_file": "src\\代码清单8-1_ 创建 LifetimeLab 实验项目.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单8-2: 三个生命周期服务接口与实现（Services/LifetimeReportService.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-008.md",
+    "line": 61,
+    "extracted_file": "src\\代码清单8-2_ 三个生命周期服务接口与实现（Services_LifetimeReportService.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单8-3: Program.cs 完整代码（LifetimeLab/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-008.md",
+    "line": 118,
+    "extracted_file": "src\\代码清单8-3_ Program.cs 完整代码（LifetimeLab_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单8-4: 运行并连续发起三次请求",
+    "lang": "bash",
+    "chapter_file": "chapter-008.md",
+    "line": 201,
+    "extracted_file": "src\\代码清单8-4_ 运行并连续发起三次请求.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单8-5: 三次请求的实例 ID 输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-008.md",
+    "line": 219,
+    "extracted_file": "src\\代码清单8-5_ 三次请求的实例 ID 输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单8-6: 捕获依赖陷阱：错误写法与正解对照",
+    "lang": "csharp",
+    "chapter_file": "chapter-008.md",
+    "line": 313,
+    "extracted_file": "src\\代码清单8-6_ 捕获依赖陷阱：错误写法与正解对照.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单8-7: 触发捕获依赖陷阱时的异常输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-008.md",
+    "line": 384,
+    "extracted_file": "src\\代码清单8-7_ 触发捕获依赖陷阱时的异常输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单9-1: appsettings.json 新增 Report 配置段",
+    "lang": "json",
+    "chapter_file": "chapter-009.md",
+    "line": 29,
+    "extracted_file": "src\\代码清单9-1_ appsettings.json 新增 Report 配置段.json",
+    "source": null
+  },
+  {
+    "title": "代码清单9-2: 选项类与校验（Services/ReportOptions.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-009.md",
+    "line": 49,
+    "extracted_file": "src\\代码清单9-2_ 选项类与校验（Services_ReportOptions.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单9-3: 报表导出器接口与三个实现（Services/ReportExporters.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-009.md",
+    "line": 131,
+    "extracted_file": "src\\代码清单9-3_ 报表导出器接口与三个实现（Services_ReportExporters.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单9-4: Program.cs 完整代码（LifetimeLab/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-009.md",
+    "line": 215,
+    "extracted_file": "src\\代码清单9-4_ Program.cs 完整代码（LifetimeLab_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单9-5: 引入 Scrutor、启动应用并连发请求",
+    "lang": "bash",
+    "chapter_file": "chapter-009.md",
+    "line": 397,
+    "extracted_file": "src\\代码清单9-5_ 引入 Scrutor、启动应用并连发请求.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单9-6: /options 与 /export 端点输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-009.md",
+    "line": 440,
+    "extracted_file": "src\\代码清单9-6_ _options 与 _export 端点输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单10-1: 创建 ConfigLab 配置实验项目",
+    "lang": "bash",
+    "chapter_file": "chapter-010.md",
+    "line": 37,
+    "extracted_file": "src\\代码清单10-1_ 创建 ConfigLab 配置实验项目.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单10-2: appsettings.json 基线层完整内容（ConfigLab/appsettings.json）",
+    "lang": "json",
+    "chapter_file": "chapter-010.md",
+    "line": 65,
+    "extracted_file": "src\\代码清单10-2_ appsettings.json 基线层完整内容（ConfigLab_appsettings.json）.json",
+    "source": null
+  },
+  {
+    "title": "代码清单10-3: appsettings.Development.json 环境层完整内容（ConfigLab/appsettings.Development.json）",
+    "lang": "json",
+    "chapter_file": "chapter-010.md",
+    "line": 85,
+    "extracted_file": "src\\代码清单10-3_ appsettings.Development.json 环境层完整内容（ConfigLab_appsettings.Development.json）.json",
+    "source": null
+  },
+  {
+    "title": "代码清单10-4: 用户机密初始化、设置与查看",
+    "lang": "bash",
+    "chapter_file": "chapter-010.md",
+    "line": 105,
+    "extracted_file": "src\\代码清单10-4_ 用户机密初始化、设置与查看.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单10-5: Program.cs 完整代码（ConfigLab/Program.cs）",
+    "lang": "csharp",
+    "chapter_file": "chapter-010.md",
+    "line": 134,
+    "extracted_file": "src\\代码清单10-5_ Program.cs 完整代码（ConfigLab_Program.cs）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单10-6: 五层覆盖实验输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-010.md",
+    "line": 259,
+    "extracted_file": "src\\代码清单10-6_ 五层覆盖实验输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单11-1: 创建 LogLab 项目并引入 Serilog.AspNetCore",
+    "lang": "bash",
+    "chapter_file": "chapter-011.md",
+    "line": 56,
+    "extracted_file": "src\\代码清单11-1_ 创建 LogLab 项目并引入 Serilog.AspNetCore.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单11-2: appsettings.json 完整内容（LogLab/appsettings.json）",
+    "lang": "json",
+    "chapter_file": "chapter-011.md",
+    "line": 72,
+    "extracted_file": "src\\代码清单11-2_ appsettings.json 完整内容（LogLab_appsettings.json）.json",
+    "source": null
+  },
+  {
+    "title": "代码清单11-3: LogLab 完整 Program.cs（Serilog 集成与埋设 bug 的订单端点）",
+    "lang": "csharp",
+    "chapter_file": "chapter-011.md",
+    "line": 109,
+    "extracted_file": "src\\代码清单11-3_ LogLab 完整 Program.cs（Serilog 集成与埋设 bug 的订单端点）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单11-4: 正常请求与 500 请求的日志输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-011.md",
+    "line": 179,
+    "extracted_file": "src\\代码清单11-4_ 正常请求与 500 请求的日志输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单11-5: 把级别降到 Warning 后的输出对照",
+    "lang": "text",
+    "chapter_file": "chapter-011.md",
+    "line": 215,
+    "extracted_file": "src\\代码清单11-5_ 把级别降到 Warning 后的输出对照.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单12-1: 特性路由标注形态(机制示意, 非运行代码)",
+    "lang": "csharp",
+    "chapter_file": "chapter-012.md",
+    "line": 42,
+    "extracted_file": "src\\代码清单12-1_ 特性路由标注形态(机制示意, 非运行代码).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单12-2: 创建 RouteLab 项目(零第三方包)",
+    "lang": "bash",
+    "chapter_file": "chapter-012.md",
+    "line": 97,
+    "extracted_file": "src\\代码清单12-2_ 创建 RouteLab 项目(零第三方包).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单12-3: appsettings.json 完整内容(RouteLab/appsettings.json)",
+    "lang": "json",
+    "chapter_file": "chapter-012.md",
+    "line": 106,
+    "extracted_file": "src\\代码清单12-3_ appsettings.json 完整内容(RouteLab_appsettings.json).json",
+    "source": null
+  },
+  {
+    "title": "代码清单12-4: RouteLab 完整 Program.cs(一套 REST 路由表的逐条登记)",
+    "lang": "csharp",
+    "chapter_file": "chapter-012.md",
+    "line": 127,
+    "extracted_file": "src\\代码清单12-4_ RouteLab 完整 Program.cs(一套 REST 路由表的逐条登记).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单12-5: 路由表逐行 curl 验证命令",
+    "lang": "bash",
+    "chapter_file": "chapter-012.md",
+    "line": 204,
+    "extracted_file": "src\\代码清单12-5_ 路由表逐行 curl 验证命令.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单12-6: RouteLab 启动与 200 命中输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-012.md",
+    "line": 238,
+    "extracted_file": "src\\代码清单12-6_ RouteLab 启动与 200 命中输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单12-7: RouteLab 404 三态输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-012.md",
+    "line": 291,
+    "extracted_file": "src\\代码清单12-7_ RouteLab 404 三态输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单13-1: 创建 ErrorLab 项目(零第三方包)",
+    "lang": "bash",
+    "chapter_file": "chapter-013.md",
+    "line": 77,
+    "extracted_file": "src\\代码清单13-1_ 创建 ErrorLab 项目(零第三方包).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单13-2: appsettings.json 完整内容(ErrorLab/appsettings.json)",
+    "lang": "json",
+    "chapter_file": "chapter-013.md",
+    "line": 86,
+    "extracted_file": "src\\代码清单13-2_ appsettings.json 完整内容(ErrorLab_appsettings.json).json",
+    "source": null
+  },
+  {
+    "title": "代码清单13-3: ErrorLab 完整 Program.cs(三类异常端点与全局契约处理器)",
+    "lang": "csharp",
+    "chapter_file": "chapter-013.md",
+    "line": 107,
+    "extracted_file": "src\\代码清单13-3_ ErrorLab 完整 Program.cs(三类异常端点与全局契约处理器).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单13-4: Development 与 Production 两组 curl 验证命令",
+    "lang": "bash",
+    "chapter_file": "chapter-013.md",
+    "line": 271,
+    "extracted_file": "src\\代码清单13-4_ Development 与 Production 两组 curl 验证命令.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单13-5: Development 环境三发请求的实抓输出",
+    "lang": "text",
+    "chapter_file": "chapter-013.md",
+    "line": 299,
+    "extracted_file": "src\\代码清单13-5_ Development 环境三发请求的实抓输出.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单13-6: Production 环境三发请求的实抓输出(问题详情契约)",
+    "lang": "text",
+    "chapter_file": "chapter-013.md",
+    "line": 356,
+    "extracted_file": "src\\代码清单13-6_ Production 环境三发请求的实抓输出(问题详情契约).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单14-1: 创建 FilterLab 项目(零第三方包)",
+    "lang": "bash",
+    "chapter_file": "chapter-014.md",
+    "line": 44,
+    "extracted_file": "src\\代码清单14-1_ 创建 FilterLab 项目(零第三方包).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单14-2: appsettings.json 完整内容(FilterLab/appsettings.json)",
+    "lang": "json",
+    "chapter_file": "chapter-014.md",
+    "line": 53,
+    "extracted_file": "src\\代码清单14-2_ appsettings.json 完整内容(FilterLab_appsettings.json).json",
+    "source": null
+  },
+  {
+    "title": "代码清单14-3: FilterLab 完整 Program.cs(过滤器语义实验与两件交付物)",
+    "lang": "csharp",
+    "chapter_file": "chapter-014.md",
+    "line": 88,
+    "extracted_file": "src\\代码清单14-3_ FilterLab 完整 Program.cs(过滤器语义实验与两件交付物).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单14-4: FilterLab 验证命令(Development 与 Production 两组)",
+    "lang": "bash",
+    "chapter_file": "chapter-014.md",
+    "line": 333,
+    "extracted_file": "src\\代码清单14-4_ FilterLab 验证命令(Development 与 Production 两组).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单14-5: Development 环境七发请求的实抓输出(实例语义、次序、短路、审计)",
+    "lang": "text",
+    "chapter_file": "chapter-014.md",
+    "line": 365,
+    "extracted_file": "src\\代码清单14-5_ Development 环境七发请求的实抓输出(实例语义、次序、短路、审计).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单14-6: Production 环境四发请求的实抓输出(按类接异常与重抛对照)",
+    "lang": "text",
+    "chapter_file": "chapter-014.md",
+    "line": 450,
+    "extracted_file": "src\\代码清单14-6_ Production 环境四发请求的实抓输出(按类接异常与重抛对照).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单15-1: 创建 EFLab 项目并安装 PostgreSQL 提供程序",
+    "lang": "bash",
+    "chapter_file": "chapter-015.md",
+    "line": 45,
+    "extracted_file": "src\\代码清单15-1_ 创建 EFLab 项目并安装 PostgreSQL 提供程序.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单15-2: 订单实体类(EFLab/Order.cs)",
+    "lang": "csharp",
+    "chapter_file": "chapter-015.md",
+    "line": 62,
+    "extracted_file": "src\\代码清单15-2_ 订单实体类(EFLab_Order.cs).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单15-3: DbContext 会话通道(EFLab/AppDbContext.cs)",
+    "lang": "csharp",
+    "chapter_file": "chapter-015.md",
+    "line": 78,
+    "extracted_file": "src\\代码清单15-3_ DbContext 会话通道(EFLab_AppDbContext.cs).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单15-4: appsettings.json 完整内容(EFLab/appsettings.json)",
+    "lang": "json",
+    "chapter_file": "chapter-015.md",
+    "line": 95,
+    "extracted_file": "src\\代码清单15-4_ appsettings.json 完整内容(EFLab_appsettings.json).json",
+    "source": null
+  },
+  {
+    "title": "代码清单15-5: EFLab 完整 Program.cs(注册、建库与插查端点)",
+    "lang": "csharp",
+    "chapter_file": "chapter-015.md",
+    "line": 119,
+    "extracted_file": "src\\代码清单15-5_ EFLab 完整 Program.cs(注册、建库与插查端点).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单15-6: EFLab 首次启动与六发请求输出格式示例",
+    "lang": "text",
+    "chapter_file": "chapter-015.md",
+    "line": 197,
+    "extracted_file": "src\\代码清单15-6_ EFLab 首次启动与六发请求输出格式示例.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单16-1: 安装 dotnet-ef 工具链与途中三道坎",
+    "lang": "bash",
+    "chapter_file": "chapter-016.md",
+    "line": 33,
+    "extracted_file": "src\\代码清单16-1_ 安装 dotnet-ef 工具链与途中三道坎.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单16-2: 换道现场:EnsureCreated 建的库直接 update 会怎样",
+    "lang": "text",
+    "chapter_file": "chapter-016.md",
+    "line": 56,
+    "extracted_file": "src\\代码清单16-2_ 换道现场_EnsureCreated 建的库直接 update 会怎样.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单16-3: 启动建库块换道:EnsureCreated 换成 Migrate",
+    "lang": "csharp",
+    "chapter_file": "chapter-016.md",
+    "line": 102,
+    "extracted_file": "src\\代码清单16-3_ 启动建库块换道_EnsureCreated 换成 Migrate.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单16-4: 增量迁移:AddOrderRemark 全链关键输出",
+    "lang": "text",
+    "chapter_file": "chapter-016.md",
+    "line": 118,
+    "extracted_file": "src\\代码清单16-4_ 增量迁移_AddOrderRemark 全链关键输出.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单16-5: migrations script 生成的 SQL 脚本(plain 与幂等两种形态)",
+    "lang": "text",
+    "chapter_file": "chapter-016.md",
+    "line": 155,
+    "extracted_file": "src\\代码清单16-5_ migrations script 生成的 SQL 脚本(plain 与幂等两种形态).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单16-6: /orders/conflict 端点:无令牌三步",
+    "lang": "csharp",
+    "chapter_file": "chapter-016.md",
+    "line": 215,
+    "extracted_file": "src\\代码清单16-6_ _orders_conflict 端点_无令牌三步.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单16-7: 挂上 xmin 令牌与两条修复路",
+    "lang": "csharp",
+    "chapter_file": "chapter-016.md",
+    "line": 260,
+    "extracted_file": "src\\代码清单16-7_ 挂上 xmin 令牌与两条修复路.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单17-1: 子表实体与导航属性(OrderItem 与 Order 增导航)",
+    "lang": "csharp",
+    "chapter_file": "chapter-017.md",
+    "line": 29,
+    "extracted_file": "src\\代码清单17-1_ 子表实体与导航属性(OrderItem 与 Order 增导航).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单17-2: 增量迁移 AddOrderItems 关键输出",
+    "lang": "text",
+    "chapter_file": "chapter-017.md",
+    "line": 68,
+    "extracted_file": "src\\代码清单17-2_ 增量迁移 AddOrderItems 关键输出.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单17-3: N+1 端点:遍历订单逐单取明细(无 Include 版)",
+    "lang": "csharp",
+    "chapter_file": "chapter-017.md",
+    "line": 104,
+    "extracted_file": "src\\代码清单17-3_ N+1 端点_遍历订单逐单取明细(无 Include 版).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单17-4: N+1 实抓:1+N 条查询日志与计时对比",
+    "lang": "text",
+    "chapter_file": "chapter-017.md",
+    "line": 166,
+    "extracted_file": "src\\代码清单17-4_ N+1 实抓_1+N 条查询日志与计时对比.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单17-5: Include 修复端点:主查询一次带走全部明细",
+    "lang": "csharp",
+    "chapter_file": "chapter-017.md",
+    "line": 200,
+    "extracted_file": "src\\代码清单17-5_ Include 修复端点_主查询一次带走全部明细.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单17-6: Include 实抓 SQL(单条 SELECT + LEFT JOIN 全文)",
+    "lang": "text",
+    "chapter_file": "chapter-017.md",
+    "line": 230,
+    "extracted_file": "src\\代码清单17-6_ Include 实抓 SQL(单条 SELECT + LEFT JOIN 全文).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单17-7: AsSplitQuery 端点:一条大 JOIN 拆成两条小查询",
+    "lang": "csharp",
+    "chapter_file": "chapter-017.md",
+    "line": 245,
+    "extracted_file": "src\\代码清单17-7_ AsSplitQuery 端点_一条大 JOIN 拆成两条小查询.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单17-8: AsSplitQuery 拆分形态实抓(两条 SELECT 全文)",
+    "lang": "text",
+    "chapter_file": "chapter-017.md",
+    "line": 269,
+    "extracted_file": "src\\代码清单17-8_ AsSplitQuery 拆分形态实抓(两条 SELECT 全文).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单17-9: 懒加载装配与显式加载 Load 形态",
+    "lang": "csharp",
+    "chapter_file": "chapter-017.md",
+    "line": 302,
+    "extracted_file": "src\\代码清单17-9_ 懒加载装配与显式加载 Load 形态.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单18-1: 工程增量:安装 Dapper 包",
+    "lang": "bash",
+    "chapter_file": "chapter-018.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单18-1_ 工程增量_安装 Dapper 包.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单18-2: Dapper 双结果集端点:一次往返取回订单与明细",
+    "lang": "csharp",
+    "chapter_file": "chapter-018.md",
+    "line": 46,
+    "extracted_file": "src\\代码清单18-2_ Dapper 双结果集端点_一次往返取回订单与明细.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单18-3: Dapper 双结果集实抓:SQL 原文与端点返回",
+    "lang": "text",
+    "chapter_file": "chapter-018.md",
+    "line": 90,
+    "extracted_file": "src\\代码清单18-3_ Dapper 双结果集实抓_SQL 原文与端点返回.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单18-4: 计时对照实抓:同批三发原值(EF Core 侧对 Dapper 侧)",
+    "lang": "text",
+    "chapter_file": "chapter-018.md",
+    "line": 122,
+    "extracted_file": "src\\代码清单18-4_ 计时对照实抓_同批三发原值(EF Core 侧对 Dapper 侧).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单18-5: 混合端点:写归 EF Core,读归 Dapper",
+    "lang": "csharp",
+    "chapter_file": "chapter-018.md",
+    "line": 157,
+    "extracted_file": "src\\代码清单18-5_ 混合端点_写归 EF Core,读归 Dapper.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单18-6: Dapper 单查端点:查空与异常两路守门",
+    "lang": "csharp",
+    "chapter_file": "chapter-018.md",
+    "line": 222,
+    "extracted_file": "src\\代码清单18-6_ Dapper 单查端点_查空与异常两路守门.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单18-7: 错误形态实抓:查空 404 与连接失败 28P01",
+    "lang": "text",
+    "chapter_file": "chapter-018.md",
+    "line": 249,
+    "extracted_file": "src\\代码清单18-7_ 错误形态实抓_查空 404 与连接失败 28P01.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单19-1: 创建 ApiLab 并复装 EF 数据访问两包",
+    "lang": "bash",
+    "chapter_file": "chapter-019.md",
+    "line": 36,
+    "extracted_file": "src\\代码清单19-1_ 创建 ApiLab 并复装 EF 数据访问两包.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单19-2: InitialCreate 迁移生成文件全文（ApiLab/Migrations 生成物）",
+    "lang": "csharp",
+    "chapter_file": "chapter-019.md",
+    "line": 49,
+    "extracted_file": "src\\代码清单19-2_ InitialCreate 迁移生成文件全文（ApiLab_Migrations 生成物）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单19-3: ApiLab 完整 Program.cs（路由分组 CRUD 端点组与组级审计过滤器）",
+    "lang": "csharp",
+    "chapter_file": "chapter-019.md",
+    "line": 93,
+    "extracted_file": "src\\代码清单19-3_ ApiLab 完整 Program.cs（路由分组 CRUD 端点组与组级审计过滤器）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单19-4: CRUD 全场景 curl 验证命令",
+    "lang": "bash",
+    "chapter_file": "chapter-019.md",
+    "line": 191,
+    "extracted_file": "src\\代码清单19-4_ CRUD 全场景 curl 验证命令.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单19-5: CRUD 命中与 404 人话实抓输出（含组级审计日志摘录）",
+    "lang": "text",
+    "chapter_file": "chapter-019.md",
+    "line": 214,
+    "extracted_file": "src\\代码清单19-5_ CRUD 命中与 404 人话实抓输出（含组级审计日志摘录）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单19-6: 非法 JSON 体 POST 的 400 实抓形态（Development 环境）",
+    "lang": "text",
+    "chapter_file": "chapter-019.md",
+    "line": 280,
+    "extracted_file": "src\\代码清单19-6_ 非法 JSON 体 POST 的 400 实抓形态（Development 环境）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单20-1: 失范端点组改造前(客户模块, RPC 风格动词路径)",
+    "lang": "csharp",
+    "chapter_file": "chapter-020.md",
+    "line": 24,
+    "extracted_file": "src\\代码清单20-1_ 失范端点组改造前(客户模块, RPC 风格动词路径).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单20-2: 改造后的客户资源控制器(ApiLab/Controllers/CustomersController.cs)",
+    "lang": "csharp",
+    "chapter_file": "chapter-020.md",
+    "line": 83,
+    "extracted_file": "src\\代码清单20-2_ 改造后的客户资源控制器(ApiLab_Controllers_CustomersController.cs).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单20-3: ApiLab 完整 Program.cs(两行注册落地与既有订单组并存)",
+    "lang": "csharp",
+    "chapter_file": "chapter-020.md",
+    "line": 186,
+    "extracted_file": "src\\代码清单20-3_ ApiLab 完整 Program.cs(两行注册落地与既有订单组并存).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单20-4: 安装接口文档实现包(一道装包坎与它的解法)",
+    "lang": "bash",
+    "chapter_file": "chapter-020.md",
+    "line": 300,
+    "extracted_file": "src\\代码清单20-4_ 安装接口文档实现包(一道装包坎与它的解法).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单20-5: 改造后客户端点组全场景 curl 验证命令",
+    "lang": "bash",
+    "chapter_file": "chapter-020.md",
+    "line": 314,
+    "extracted_file": "src\\代码清单20-5_ 改造后客户端点组全场景 curl 验证命令.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单20-6: 全场景实抓输出(状态码各归各位与幂等双发)",
+    "lang": "text",
+    "chapter_file": "chapter-020.md",
+    "line": 348,
+    "extracted_file": "src\\代码清单20-6_ 全场景实抓输出(状态码各归各位与幂等双发).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单20-7: 动作过滤器类全文(ApiLab/Controllers/AuditLogActionFilter.cs)",
+    "lang": "csharp",
+    "chapter_file": "chapter-020.md",
+    "line": 440,
+    "extracted_file": "src\\代码清单20-7_ 动作过滤器类全文(ApiLab_Controllers_AuditLogActionFilter.cs).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单20-8: 接口文档端点实抓(UI 页与描述文档)",
+    "lang": "text",
+    "chapter_file": "chapter-020.md",
+    "line": 477,
+    "extracted_file": "src\\代码清单20-8_ 接口文档端点实抓(UI 页与描述文档).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单21-1: 安装 FluentValidation 系包(不钉版本的解析结果与一道对不上号的坎)",
+    "lang": "bash",
+    "chapter_file": "chapter-021.md",
+    "line": 32,
+    "extracted_file": "src\\代码清单21-1_ 安装 FluentValidation 系包(不钉版本的解析结果与一道对不上号的坎).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单21-2: CustomerValidator 规则集全文(含嵌套与集合两个伴生规则类)",
+    "lang": "csharp",
+    "chapter_file": "chapter-021.md",
+    "line": 48,
+    "extracted_file": "src\\代码清单21-2_ CustomerValidator 规则集全文(含嵌套与集合两个伴生规则类).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单21-3: Program.cs 登记区新增两行(自动验证接线与规则集批量登记)",
+    "lang": "csharp",
+    "chapter_file": "chapter-021.md",
+    "line": 112,
+    "extracted_file": "src\\代码清单21-3_ Program.cs 登记区新增两行(自动验证接线与规则集批量登记).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单21-4: 动作过滤器日志观察实抓(FluentValidation 400 零日志行对照)",
+    "lang": "text",
+    "chapter_file": "chapter-021.md",
+    "line": 147,
+    "extracted_file": "src\\代码清单21-4_ 动作过滤器日志观察实抓(FluentValidation 400 零日志行对照).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单21-5: Customer 模型教学扩展字段(嵌套 Address 与集合 Contacts)",
+    "lang": "csharp",
+    "chapter_file": "chapter-021.md",
+    "line": 174,
+    "extracted_file": "src\\代码清单21-5_ Customer 模型教学扩展字段(嵌套 Address 与集合 Contacts).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单21-6: 全场景实抓输出(嵌套与集合 400 自动出单与存量零回归)",
+    "lang": "text",
+    "chapter_file": "chapter-021.md",
+    "line": 211,
+    "extracted_file": "src\\代码清单21-6_ 全场景实抓输出(嵌套与集合 400 自动出单与存量零回归).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单22-1: 源对象与出门形态的完整定义",
+    "lang": "csharp",
+    "chapter_file": "chapter-022.md",
+    "line": 43,
+    "extracted_file": "src\\代码清单22-1_ 源对象与出门形态的完整定义.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单22-2: 手写映射实现全文",
+    "lang": "csharp",
+    "chapter_file": "chapter-022.md",
+    "line": 85,
+    "extracted_file": "src\\代码清单22-2_ 手写映射实现全文.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单22-3: 安装 AutoMapper(不钉版本解析与连带装入的依赖)",
+    "lang": "bash",
+    "chapter_file": "chapter-022.md",
+    "line": 119,
+    "extracted_file": "src\\代码清单22-3_ 安装 AutoMapper(不钉版本解析与连带装入的依赖).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单22-4: AutoMapper 规则类全文(集中声明四类变形)",
+    "lang": "csharp",
+    "chapter_file": "chapter-022.md",
+    "line": 134,
+    "extracted_file": "src\\代码清单22-4_ AutoMapper 规则类全文(集中声明四类变形).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单22-5: 双路对照运行实抓(逐字段六行全一致)",
+    "lang": "text",
+    "chapter_file": "chapter-022.md",
+    "line": 176,
+    "extracted_file": "src\\代码清单22-5_ 双路对照运行实抓(逐字段六行全一致).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单22-6: 配错实验实抓(炸点分层与静默错数据)",
+    "lang": "text",
+    "chapter_file": "chapter-022.md",
+    "line": 193,
+    "extracted_file": "src\\代码清单22-6_ 配错实验实抓(炸点分层与静默错数据).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单23-1: 创建 CacheLab 并安装三枚依赖包(两笔装包口径)",
+    "lang": "bash",
+    "chapter_file": "chapter-023.md",
+    "line": 36,
+    "extracted_file": "src\\代码清单23-1_ 创建 CacheLab 并安装三枚依赖包(两笔装包口径).sh",
+    "source": null
+  },
+  {
+    "title": "代码清单23-2: CacheLab 完整 Program.cs(两级读路径、同键锁防线与实验端点组)",
+    "lang": "csharp",
+    "chapter_file": "chapter-023.md",
+    "line": 52,
+    "extracted_file": "src\\代码清单23-2_ CacheLab 完整 Program.cs(两级读路径、同键锁防线与实验端点组).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单23-3: 实体、上下文与播种(三件小家当全文)",
+    "lang": "csharp",
+    "chapter_file": "chapter-023.md",
+    "line": 229,
+    "extracted_file": "src\\代码清单23-3_ 实体、上下文与播种(三件小家当全文).cs",
+    "source": null
+  },
+  {
+    "title": "代码清单23-4: 读路径四级流实抓(回源回填、L1 命中、L1 过期后 L2 命中)",
+    "lang": "text",
+    "chapter_file": "chapter-023.md",
+    "line": 281,
+    "extracted_file": "src\\代码清单23-4_ 读路径四级流实抓(回源回填、L1 命中、L1 过期后 L2 命中).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单23-5: 无锁击穿实抓(24 路并发清场后同打一键, 回源计数 24 对 24)",
+    "lang": "text",
+    "chapter_file": "chapter-023.md",
+    "line": 315,
+    "extracted_file": "src\\代码清单23-5_ 无锁击穿实抓(24 路并发清场后同打一键, 回源计数 24 对 24).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单23-6: 加锁防线实抓(同一批 24 路并发, 回源计数停在 1)",
+    "lang": "text",
+    "chapter_file": "chapter-023.md",
+    "line": 331,
+    "extracted_file": "src\\代码清单23-6_ 加锁防线实抓(同一批 24 路并发, 回源计数停在 1).txt",
+    "source": null
+  },
+  {
+    "title": "代码清单24-1: 创建 ChatLab 工程并落地浏览器客户端脚本",
+    "lang": "bash",
+    "chapter_file": "chapter-024.md",
+    "line": 50,
+    "extracted_file": "src\\代码清单24-1_ 创建 ChatLab 工程并落地浏览器客户端脚本.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单24-2: ChatHub 全文：客户端可调方法与连接生命周期两端",
+    "lang": "csharp",
+    "chapter_file": "chapter-024.md",
+    "line": 60,
+    "extracted_file": "src\\代码清单24-2_ ChatHub 全文：客户端可调方法与连接生命周期两端.cs",
+    "source": "code/chatlab/ChatHub.cs"
+  },
+  {
+    "title": "代码清单24-3: Program.cs 全文：服务登记、静态页与 Hub 路由",
+    "lang": "csharp",
+    "chapter_file": "chapter-024.md",
+    "line": 113,
+    "extracted_file": "src\\代码清单24-3_ Program.cs 全文：服务登记、静态页与 Hub 路由.cs",
+    "source": "code/chatlab/Program.cs"
+  },
+  {
+    "title": "代码清单24-4: wwwroot/index.html 全文：聊天室页面",
+    "lang": "html",
+    "chapter_file": "chapter-024.md",
+    "line": 139,
+    "extracted_file": "src\\代码清单24-4_ wwwroot_index.html 全文：聊天室页面.html",
+    "source": "code/chatlab/wwwroot/index.html"
+  },
+  {
+    "title": "代码清单24-5: 双向回显真机实抓：invoke 方向与推送方向",
+    "lang": "text",
+    "chapter_file": "chapter-024.md",
+    "line": 249,
+    "extracted_file": "src\\代码清单24-5_ 双向回显真机实抓：invoke 方向与推送方向.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单24-6: 双客户端组播真机实抓：两个真实连接互通",
+    "lang": "text",
+    "chapter_file": "chapter-024.md",
+    "line": 267,
+    "extracted_file": "src\\代码清单24-6_ 双客户端组播真机实抓：两个真实连接互通.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单24-7: 自动重连实验真机实抓摘录",
+    "lang": "text",
+    "chapter_file": "chapter-024.md",
+    "line": 297,
+    "extracted_file": "src\\代码清单24-7_ 自动重连实验真机实抓摘录.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单25-1: AuthLab 完整 Program.cs（认证注册段与三个端点，零引包）",
+    "lang": "csharp",
+    "chapter_file": "chapter-025.md",
+    "line": 68,
+    "extracted_file": "src\\代码清单25-1_ AuthLab 完整 Program.cs（认证注册段与三个端点，零引包）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单25-2: 挑战行为两拍实抓（默认 302 与 Events 置 401）",
+    "lang": "text",
+    "chapter_file": "chapter-025.md",
+    "line": 134,
+    "extracted_file": "src\\代码清单25-2_ 挑战行为两拍实抓（默认 302 与 Events 置 401）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单25-3: 登录闭环 curl 验证命令（演示凭据）",
+    "lang": "bash",
+    "chapter_file": "chapter-025.md",
+    "line": 162,
+    "extracted_file": "src\\代码清单25-3_ 登录闭环 curl 验证命令（演示凭据）.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单25-4: 闭环实抓输出（401 与 200 两拍及对照笔）",
+    "lang": "text",
+    "chapter_file": "chapter-025.md",
+    "line": 180,
+    "extracted_file": "src\\代码清单25-4_ 闭环实抓输出（401 与 200 两拍及对照笔）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单26-1: 数据底座登记段",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 72,
+    "extracted_file": "src\\代码清单26-1_ 数据底座登记段.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Program.cs"
+  },
+  {
+    "title": "代码清单26-2: 建租户",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 108,
+    "extracted_file": "src\\代码清单26-2_ 建租户.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/AdminTenantsController.cs"
+  },
+  {
+    "title": "代码清单26-3: 创建成员与邀请成员",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 132,
+    "extracted_file": "src\\代码清单26-3_ 创建成员与邀请成员.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/TenantMembersController.cs"
+  },
+  {
+    "title": "代码清单26-4: 分配角色（source 同清单26-3，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 205,
+    "extracted_file": "src\\代码清单26-4_ 分配角色（source 同清单26-3，同文件）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单26-5: 创建角色",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 228,
+    "extracted_file": "src\\代码清单26-5_ 创建角色.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/TenantRolesController.cs"
+  },
+  {
+    "title": "代码清单26-6: 整批设置角色菜单",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 253,
+    "extracted_file": "src\\代码清单26-6_ 整批设置角色菜单.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/TenantRoleMenusController.cs"
+  },
+  {
+    "title": "代码清单26-7: 订阅应用",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 285,
+    "extracted_file": "src\\代码清单26-7_ 订阅应用.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/TenantApplicationsController.cs"
+  },
+  {
+    "title": "代码清单26-8: 切换租户",
+    "lang": "csharp",
+    "chapter_file": "chapter-026.md",
+    "line": 323,
+    "extracted_file": "src\\代码清单26-8_ 切换租户.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/MeController.cs"
+  },
+  {
+    "title": "代码清单26-9: 全链十二发实抓命令与代表回显（演示凭据，非真实凭据）",
+    "lang": "text",
+    "chapter_file": "chapter-026.md",
+    "line": 347,
+    "extracted_file": "src\\代码清单26-9_ 全链十二发实抓命令与代表回显（演示凭据，非真实凭据）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单27-1: AuthApi 类声明与五个依赖注入段",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单27-1_ AuthApi 类声明与五个依赖注入段.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/AuthApi.cs"
+  },
+  {
+    "title": "代码清单27-2: 登录主路（source 同清单27-1，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 57,
+    "extracted_file": "src\\代码清单27-2_ 登录主路（source 同清单27-1，同文件）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单27-3: 登录响应段（source 同清单27-1，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 121,
+    "extracted_file": "src\\代码清单27-3_ 登录响应段（source 同清单27-1，同文件）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单27-4: 登录全链实抓（演示凭据，非真实凭据）",
+    "lang": "text",
+    "chapter_file": "chapter-027.md",
+    "line": 180,
+    "extracted_file": "src\\代码清单27-4_ 登录全链实抓（演示凭据，非真实凭据）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单27-5: IssueAccessToken 签发段",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 217,
+    "extracted_file": "src\\代码清单27-5_ IssueAccessToken 签发段.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Security/JwtIssuer.cs"
+  },
+  {
+    "title": "代码清单27-6: GenerateRefreshToken 段（source 同清单27-5，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 250,
+    "extracted_file": "src\\代码清单27-6_ GenerateRefreshToken 段（source 同清单27-5，同文件）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单27-7: lab Refresh 入口",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 269,
+    "extracted_file": "src\\代码清单27-7_ lab Refresh 入口.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/AuthController.cs"
+  },
+  {
+    "title": "代码清单27-8: Refresh 核心段（换发与轮换）",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 277,
+    "extracted_file": "src\\代码清单27-8_ Refresh 核心段（换发与轮换）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Services/AuthService.cs"
+  },
+  {
+    "title": "代码清单27-9: 刷新三测试取证（dotnet test 按名过滤）",
+    "lang": "text",
+    "chapter_file": "chapter-027.md",
+    "line": 327,
+    "extracted_file": "src\\代码清单27-9_ 刷新三测试取证（dotnet test 按名过滤）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单27-10: 登出段（source 同清单27-1，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-027.md",
+    "line": 342,
+    "extracted_file": "src\\代码清单27-10_ 登出段（source 同清单27-1，同文件）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单28-1: 签发器文件头与构造段（第一窗）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单28-1_ 签发器文件头与构造段（第一窗）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Security/JwtIssuer.cs"
+  },
+  {
+    "title": "代码清单28-2: GenerateRefreshToken 全段（同文件第二窗）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 80,
+    "extracted_file": "src\\代码清单28-2_ GenerateRefreshToken 全段（同文件第二窗）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Security/JwtIssuer.cs"
+  },
+  {
+    "title": "代码清单28-3: OAuth 应用注册（ClientsPost）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 139,
+    "extracted_file": "src\\代码清单28-3_ OAuth 应用注册（ClientsPost）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/AdminClientsController.cs"
+  },
+  {
+    "title": "代码清单28-4: 应用启停（Status 段，同文件短窗）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 172,
+    "extracted_file": "src\\代码清单28-4_ 应用启停（Status 段，同文件短窗）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/AdminClientsController.cs"
+  },
+  {
+    "title": "代码清单28-5: 公共 client 元数据（Status==1 过滤）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 186,
+    "extracted_file": "src\\代码清单28-5_ 公共 client 元数据（Status==1 过滤）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/ClientsController.cs"
+  },
+  {
+    "title": "代码清单28-6: Authorize 入口（认定与核对，第一窗）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 215,
+    "extracted_file": "src\\代码清单28-6_ Authorize 入口（认定与核对，第一窗）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/OAuthController.cs"
+  },
+  {
+    "title": "代码清单28-7: 授权码签发（Authorize 第二窗，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 271,
+    "extracted_file": "src\\代码清单28-7_ 授权码签发（Authorize 第二窗，同文件）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/OAuthController.cs"
+  },
+  {
+    "title": "代码清单28-8: 码换令牌（Token 交换窗，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 304,
+    "extracted_file": "src\\代码清单28-8_ 码换令牌（Token 交换窗，同文件）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/OAuthController.cs"
+  },
+  {
+    "title": "代码清单28-9: 刷新轮换（RotateRefreshToken 段，同文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-028.md",
+    "line": 400,
+    "extracted_file": "src\\代码清单28-9_ 刷新轮换（RotateRefreshToken 段，同文件）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Controllers/Implementation/OAuthController.cs"
+  },
+  {
+    "title": "代码清单28-10: 授权码全链实抓（演示凭据，非真实凭据）",
+    "lang": "text",
+    "chapter_file": "chapter-028.md",
+    "line": 450,
+    "extracted_file": "src\\代码清单28-10_ 授权码全链实抓（演示凭据，非真实凭据）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单29-3: DataProtection 密钥环落盘实查（键材料零复录）",
+    "lang": "text",
+    "chapter_file": "chapter-029.md",
+    "line": 32,
+    "extracted_file": "src\\代码清单29-3_ DataProtection 密钥环落盘实查（键材料零复录）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单29-1: 租户守卫的核对逻辑（TenantGuard 全文件）",
+    "lang": "csharp",
+    "chapter_file": "chapter-029.md",
+    "line": 53,
+    "extracted_file": "src\\代码清单29-1_ 租户守卫的核对逻辑（TenantGuard 全文件）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Security/TenantGuard.cs"
+  },
+  {
+    "title": "代码清单29-2: 失败锁定的计数与锁定（FailedLoginStore 连续段）",
+    "lang": "csharp",
+    "chapter_file": "chapter-029.md",
+    "line": 107,
+    "extracted_file": "src\\代码清单29-2_ 失败锁定的计数与锁定（FailedLoginStore 连续段）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/src/Security/FailedLoginStore.cs"
+  },
+  {
+    "title": "代码清单29-4: HSTS 与 CSP 响应头对照实抓（未命中 vs 命中）",
+    "lang": "text",
+    "chapter_file": "chapter-029.md",
+    "line": 180,
+    "extracted_file": "src\\代码清单29-4_ HSTS 与 CSP 响应头对照实抓（未命中 vs 命中）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单29-5: 管理端行为对照（加固前 200，加固后 401+403）",
+    "lang": "text",
+    "chapter_file": "chapter-029.md",
+    "line": 200,
+    "extracted_file": "src\\代码清单29-5_ 管理端行为对照（加固前 200，加固后 401+403）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单29-6: 最小加固配置（演示配置，非案例仓源码；禁入仓禁提交）",
+    "lang": "csharp",
+    "chapter_file": "chapter-029.md",
+    "line": 215,
+    "extracted_file": "src\\代码清单29-6_ 最小加固配置（演示配置，非案例仓源码；禁入仓禁提交）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单30-1: 合同服务的测试怎么写（关键词过滤与状态过滤两用例）",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 43,
+    "extracted_file": "src\\代码清单30-1_ 合同服务的测试怎么写（关键词过滤与状态过滤两用例）.cs",
+    "source": "code/lab-management-system-aspnetcore/tests/Services/ContractServiceTest.cs"
+  },
+  {
+    "title": "代码清单30-2: 只供返回值的替身",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 77,
+    "extracted_file": "src\\代码清单30-2_ 只供返回值的替身.cs",
+    "source": "code/lab-management-system-aspnetcore/tests/TestDoubles/InMemoryFlowStore.cs"
+  },
+  {
+    "title": "代码清单30-3: 失败锁定的测试（边界四用例）",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 123,
+    "extracted_file": "src\\代码清单30-3_ 失败锁定的测试（边界四用例）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/Auth/Session/FailedLoginStoreTest.cs"
+  },
+  {
+    "title": "代码清单30-4: 让守卫脱离 HTTP 也能测的替身",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 170,
+    "extracted_file": "src\\代码清单30-4_ 让守卫脱离 HTTP 也能测的替身.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/StubTenantContext.cs"
+  },
+  {
+    "title": "代码清单30-5: TDD 红拍，测试先行（教学演示载体，非案例仓源码，本机工作副本实跑）",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 202,
+    "extracted_file": "src\\代码清单30-5_ TDD 红拍，测试先行（教学演示载体，非案例仓源码，本机工作副本实跑）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单30-6: TDD 绿拍与重构，最终形态（教学演示载体，非案例仓源码，本机工作副本实跑）",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 262,
+    "extracted_file": "src\\代码清单30-6_ TDD 绿拍与重构，最终形态（教学演示载体，非案例仓源码，本机工作副本实跑）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单30-7: Moq 验交互的替身（教学演示载体，非案例仓源码，本机工作副本实跑）",
+    "lang": "csharp",
+    "chapter_file": "chapter-030.md",
+    "line": 298,
+    "extracted_file": "src\\代码清单30-7_ Moq 验交互的替身（教学演示载体，非案例仓源码，本机工作副本实跑）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单30-8: 双仓核心逻辑测试族全绿点名（trx 实抓）",
+    "lang": "text",
+    "chapter_file": "chapter-030.md",
+    "line": 346,
+    "extracted_file": "src\\代码清单30-8_ 双仓核心逻辑测试族全绿点名（trx 实抓）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单31-1: 测试宿主怎么装（Factory 装配段）",
+    "lang": "csharp",
+    "chapter_file": "chapter-031.md",
+    "line": 37,
+    "extracted_file": "src\\代码清单31-1_ 测试宿主怎么装（Factory 装配段）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/ErrorSemanticsTests.cs"
+  },
+  {
+    "title": "代码清单31-2: 鉴权路径的端到端断言（自签令牌与三用例）",
+    "lang": "csharp",
+    "chapter_file": "chapter-031.md",
+    "line": 74,
+    "extracted_file": "src\\代码清单31-2_ 鉴权路径的端到端断言（自签令牌与三用例）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/ErrorSemanticsTests.cs"
+  },
+  {
+    "title": "代码清单31-3: 校验边界的断言（三用例）",
+    "lang": "csharp",
+    "chapter_file": "chapter-031.md",
+    "line": 164,
+    "extracted_file": "src\\代码清单31-3_ 校验边界的断言（三用例）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/ModelStateValidationTests.cs"
+  },
+  {
+    "title": "代码清单31-4: 假库接线的直调式（局部更新语义测试）",
+    "lang": "csharp",
+    "chapter_file": "chapter-031.md",
+    "line": 218,
+    "extracted_file": "src\\代码清单31-4_ 假库接线的直调式（局部更新语义测试）.cs",
+    "source": "code/saas-identity-platform-aspnetcore/tests/PartialUpdateSemanticsTests.cs"
+  },
+  {
+    "title": "代码清单31-5: 需真库的那族测试基建（收窄窗）",
+    "lang": "csharp",
+    "chapter_file": "chapter-031.md",
+    "line": 268,
+    "extracted_file": "src\\代码清单31-5_ 需真库的那族测试基建（收窄窗）.cs",
+    "source": "code/lab-management-system-aspnetcore/tests/Harness/TestDb.cs"
+  },
+  {
+    "title": "代码清单31-6: 零真库实录与真库面回指（降级案对拍）",
+    "lang": "text",
+    "chapter_file": "chapter-031.md",
+    "line": 318,
+    "extracted_file": "src\\代码清单31-6_ 零真库实录与真库面回指（降级案对拍）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单31-7: 环境探测与清场留痕（降级判定依据）",
+    "lang": "text",
+    "chapter_file": "chapter-031.md",
+    "line": 341,
+    "extracted_file": "src\\代码清单31-7_ 环境探测与清场留痕（降级判定依据）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单32-1: 认证域控制器的类头与登录入口（薄层转发与构造注入）",
+    "lang": "csharp",
+    "chapter_file": "chapter-032.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单32-1_ 认证域控制器的类头与登录入口（薄层转发与构造注入）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/AuthController.cs"
+  },
+  {
+    "title": "代码清单32-2: SSO 跳转（授权端点透传与签名 state cookie）",
+    "lang": "csharp",
+    "chapter_file": "chapter-032.md",
+    "line": 60,
+    "extracted_file": "src\\代码清单32-2_ SSO 跳转（授权端点透传与签名 state cookie）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/AuthController.cs"
+  },
+  {
+    "title": "代码清单33-1: 当前用户与动态菜单（授权门槛落到方法级）",
+    "lang": "csharp",
+    "chapter_file": "chapter-033.md",
+    "line": 73,
+    "extracted_file": "src\\代码清单33-1_ 当前用户与动态菜单（授权门槛落到方法级）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/AuthController.cs"
+  },
+  {
+    "title": "代码清单33-2: 选租户换发（成员资格校验与令牌重签）",
+    "lang": "csharp",
+    "chapter_file": "chapter-033.md",
+    "line": 91,
+    "extracted_file": "src\\代码清单33-2_ 选租户换发（成员资格校验与令牌重签）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/AuthController.cs"
+  },
+  {
+    "title": "代码清单34-1: 建模产物全景（类头路线注记与流程域实体集合）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 23,
+    "extracted_file": "src\\代码清单34-1_ 建模产物全景（类头路线注记与流程域实体集合）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Persistence/LabDbContext.cs"
+  },
+  {
+    "title": "代码清单34-2: 创建接样与流程历史（初始状态与关联拦截）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 63,
+    "extracted_file": "src\\代码清单34-2_ 创建接样与流程历史（初始状态与关联拦截）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单34-3: 创建样品（扩展字段缺省空字典）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 88,
+    "extracted_file": "src\\代码清单34-3_ 创建样品（扩展字段缺省空字典）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单34-4: 创建检测记录（必填字段映射落库）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 96,
+    "extracted_file": "src\\代码清单34-4_ 创建检测记录（必填字段映射落库）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单34-5: 专项新增（默认值初始化）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 108,
+    "extracted_file": "src\\代码清单34-5_ 专项新增（默认值初始化）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/DictionaryController.cs"
+  },
+  {
+    "title": "代码清单34-6: 参数新增（官方默认与空别名集合）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 114,
+    "extracted_file": "src\\代码清单34-6_ 参数新增（官方默认与空别名集合）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/DictionaryController.cs"
+  },
+  {
+    "title": "代码清单34-7: 标准新增（默认启用状态）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 120,
+    "extracted_file": "src\\代码清单34-7_ 标准新增（默认启用状态）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/DictionaryController.cs"
+  },
+  {
+    "title": "代码清单34-8: 项目新增（字段映射与专项缺失拦截）",
+    "lang": "csharp",
+    "chapter_file": "chapter-034.md",
+    "line": 126,
+    "extracted_file": "src\\代码清单34-8_ 项目新增（字段映射与专项缺失拦截）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/DictionaryController.cs"
+  },
+  {
+    "title": "代码清单35-1: 合同列表与创建（租户过滤、分页回显与默认启用）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 27,
+    "extracted_file": "src\\代码清单35-1_ 合同列表与创建（租户过滤、分页回显与默认启用）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单35-2: 更新合同（patch 语义，未传字段保留）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 56,
+    "extracted_file": "src\\代码清单35-2_ 更新合同（patch 语义，未传字段保留）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单35-3: 审核与批准的推进退回（act 端点一行委托服务层）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 70,
+    "extracted_file": "src\\代码清单35-3_ 审核与批准的推进退回（act 端点一行委托服务层）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单35-4: 审核队列的持久层入口（@impl 锚与类声明）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 84,
+    "extracted_file": "src\\代码清单35-4_ 审核队列的持久层入口（@impl 锚与类声明）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Persistence/EfFlowStore.cs"
+  },
+  {
+    "title": "代码清单35-6: 队列查询（stage 过滤、时间排序与分页截断）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 93,
+    "extracted_file": "src\\代码清单35-6_ 队列查询（stage 过滤、时间排序与分页截断）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Persistence/EfFlowStore.cs"
+  },
+  {
+    "title": "代码清单35-7: 型号列表（租户隔离与关键字过滤）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 110,
+    "extracted_file": "src\\代码清单35-7_ 型号列表（租户隔离与关键字过滤）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/CatalogController.cs"
+  },
+  {
+    "title": "代码清单35-8: 型号新增（时间戳相等初始化）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 136,
+    "extracted_file": "src\\代码清单35-8_ 型号新增（时间戳相等初始化）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/CatalogController.cs"
+  },
+  {
+    "title": "代码清单35-9: 规格列表（名称关键字过滤）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 146,
+    "extracted_file": "src\\代码清单35-9_ 规格列表（名称关键字过滤）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/CatalogController.cs"
+  },
+  {
+    "title": "代码清单35-10: 等级列表（objectCode 精确过滤）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 168,
+    "extracted_file": "src\\代码清单35-10_ 等级列表（objectCode 精确过滤）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/CatalogController.cs"
+  },
+  {
+    "title": "代码清单35-11: 看板统计端点（聚合一端承载）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 194,
+    "extracted_file": "src\\代码清单35-11_ 看板统计端点（聚合一端承载）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/SummaryController.cs"
+  },
+  {
+    "title": "代码清单35-5: 删除合同的防御性再查（RESTRICT 语义）",
+    "lang": "csharp",
+    "chapter_file": "chapter-035.md",
+    "line": 210,
+    "extracted_file": "src\\代码清单35-5_ 删除合同的防御性再查（RESTRICT 语义）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Persistence/EfFlowStore.cs"
+  },
+  {
+    "title": "代码清单36-1: 合同详情（缺失抛 404 语义的契约承诺）",
+    "lang": "csharp",
+    "chapter_file": "chapter-036.md",
+    "line": 39,
+    "extracted_file": "src\\代码清单36-1_ 合同详情（缺失抛 404 语义的契约承诺）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/ContractController.cs"
+  },
+  {
+    "title": "代码清单36-2: 参数界面列表（关键字过滤与回包四件套）",
+    "lang": "csharp",
+    "chapter_file": "chapter-036.md",
+    "line": 46,
+    "extracted_file": "src\\代码清单36-2_ 参数界面列表（关键字过滤与回包四件套）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Controllers/Implementation/DictionaryController.cs"
+  },
+  {
+    "title": "代码清单36-3: 生成客户端调用示意（教学演示载体，非案例仓源码）",
+    "lang": "ts",
+    "chapter_file": "chapter-036.md",
+    "line": 79,
+    "extracted_file": "src\\代码清单36-3_ 生成客户端调用示意（教学演示载体，非案例仓源码）.ts",
+    "source": null
+  },
+  {
+    "title": "代码清单36-4: 契约测试用例示意（教学演示载体，非案例仓源码）",
+    "lang": "ts",
+    "chapter_file": "chapter-036.md",
+    "line": 92,
+    "extracted_file": "src\\代码清单36-4_ 契约测试用例示意（教学演示载体，非案例仓源码）.ts",
+    "source": null
+  },
+  {
+    "title": "代码清单37-1: ReminderScanner 定时件（教学演示载体，非案例仓源码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-037.md",
+    "line": 29,
+    "extracted_file": "src\\代码清单37-1_ ReminderScanner 定时件（教学演示载体，非案例仓源码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单37-2: ReminderPublisher 生产者（教学演示载体，非案例仓源码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-037.md",
+    "line": 64,
+    "extracted_file": "src\\代码清单37-2_ ReminderPublisher 生产者（教学演示载体，非案例仓源码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单37-3: ReminderConsumer 消费者宿主（教学演示载体，非案例仓源码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-037.md",
+    "line": 96,
+    "extracted_file": "src\\代码清单37-3_ ReminderConsumer 消费者宿主（教学演示载体，非案例仓源码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单37-4: 退避重试与消费端确认（教学演示载体，非案例仓源码）",
+    "lang": "csharp",
+    "chapter_file": "chapter-037.md",
+    "line": 135,
+    "extracted_file": "src\\代码清单37-4_ 退避重试与消费端确认（教学演示载体，非案例仓源码）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单38-1: SpecialtyObjectLink 的读删两形状（ExecuteDelete 批删与条件式免追踪读）",
+    "lang": "csharp",
+    "chapter_file": "chapter-038.md",
+    "line": 25,
+    "extracted_file": "src\\代码清单38-1_ SpecialtyObjectLink 的读删两形状（ExecuteDelete 批删与条件式免追踪读）.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Persistence/EfDictionaryStore.cs"
+  },
+  {
+    "title": "代码清单38-2: 压测的流量发生与观测（教学演示载体，非案例仓源码；示意值非实测）",
+    "lang": "bash",
+    "chapter_file": "chapter-038.md",
+    "line": 46,
+    "extracted_file": "src\\代码清单38-2_ 压测的流量发生与观测（教学演示载体，非案例仓源码；示意值非实测）.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单38-3: 三路优化的示意形态（教学演示载体，非案例仓源码；示意值非实测）",
+    "lang": "csharp",
+    "chapter_file": "chapter-038.md",
+    "line": 68,
+    "extracted_file": "src\\代码清单38-3_ 三路优化的示意形态（教学演示载体，非案例仓源码；示意值非实测）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单39-1: lab 仓的 Dockerfile（仓根现成工件）多阶段两段",
+    "lang": "dockerfile",
+    "chapter_file": "chapter-039.md",
+    "line": 29,
+    "extracted_file": "src\\代码清单39-1_ lab 仓的 Dockerfile（仓根现成工件）多阶段两段.dockerfile",
+    "source": "code/lab-management-system-aspnetcore/Dockerfile"
+  },
+  {
+    "title": "代码清单39-2: 三服务编排的声明文件（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "yaml",
+    "chapter_file": "chapter-039.md",
+    "line": 99,
+    "extracted_file": "src\\代码清单39-2_ 三服务编排的声明文件（教学演示载体，非案例仓源码；教学示意文件，未实跑）.yml",
+    "source": null
+  },
+  {
+    "title": "代码清单39-3: 整套依赖的起、看、收（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "bash",
+    "chapter_file": "chapter-039.md",
+    "line": 130,
+    "extracted_file": "src\\代码清单39-3_ 整套依赖的起、看、收（教学演示载体，非案例仓源码；教学示意文件，未实跑）.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单40-1: lab 仓的 ci.yml（仓内现成工件）检查链",
+    "lang": "yaml",
+    "chapter_file": "chapter-040.md",
+    "line": 33,
+    "extracted_file": "src\\代码清单40-1_ lab 仓的 ci.yml（仓内现成工件）检查链.yml",
+    "source": "code/lab-management-system-aspnetcore/.github/workflows/ci.yml"
+  },
+  {
+    "title": "代码清单40-2: 镜像与发布段的教学声明文件（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "yaml",
+    "chapter_file": "chapter-040.md",
+    "line": 89,
+    "extracted_file": "src\\代码清单40-2_ 镜像与发布段的教学声明文件（教学演示载体，非案例仓源码；教学示意文件，未实跑）.yml",
+    "source": null
+  },
+  {
+    "title": "代码清单40-3: 回滚手册三条（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "bash",
+    "chapter_file": "chapter-040.md",
+    "line": 127,
+    "extracted_file": "src\\代码清单40-3_ 回滚手册三条（教学演示载体，非案例仓源码；教学示意文件，未实跑）.sh",
+    "source": null
+  },
+  {
+    "title": "代码清单41-1: lab 仓的 Program.cs（仓内现成工件）匿名 /health 探针",
+    "lang": "csharp",
+    "chapter_file": "chapter-041.md",
+    "line": 31,
+    "extracted_file": "src\\代码清单41-1_ lab 仓的 Program.cs（仓内现成工件）匿名 _health 探针.cs",
+    "source": "code/lab-management-system-aspnetcore/src/Program.cs"
+  },
+  {
+    "title": "代码清单41-2: 指标面三类计数器的教学示意（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "csharp",
+    "chapter_file": "chapter-041.md",
+    "line": 52,
+    "extracted_file": "src\\代码清单41-2_ 指标面三类计数器的教学示意（教学演示载体，非案例仓源码；教学示意文件，未实跑）.cs",
+    "source": null
+  },
+  {
+    "title": "代码清单41-3: 三线合围排查次序手册（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "text",
+    "chapter_file": "chapter-041.md",
+    "line": 73,
+    "extracted_file": "src\\代码清单41-3_ 三线合围排查次序手册（教学演示载体，非案例仓源码；教学示意文件，未实跑）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单42-1: YARP 反向代理路由配置示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "json",
+    "chapter_file": "chapter-042.md",
+    "line": 33,
+    "extracted_file": "src\\代码清单42-1_ YARP 反向代理路由配置示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）.json",
+    "source": null
+  },
+  {
+    "title": "代码清单42-2: 单体到微服务演进路线图示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "text",
+    "chapter_file": "chapter-042.md",
+    "line": 73,
+    "extracted_file": "src\\代码清单42-2_ 单体到微服务演进路线图示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）.txt",
+    "source": null
+  },
+  {
+    "title": "代码清单42-3: .NET Aspire AppHost 清单声明示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）",
+    "lang": "csharp",
+    "chapter_file": "chapter-042.md",
+    "line": 96,
+    "extracted_file": "src\\代码清单42-3_ .NET Aspire AppHost 清单声明示教（教学演示载体，非案例仓源码；教学示意文件，未实跑）.cs",
+    "source": null
+  }
+]

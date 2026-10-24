@@ -1,0 +1,11 @@
+# 仓现状实例（HTTP :5104）：两道头皆未命中
+curl -s -D - -o /dev/null http://127.0.0.1:5104/health
+# HTTP/1.1 200 OK / Content-Type: application/json; charset=utf-8 / Server: Kestrel
+# （响应头里既无 Strict-Transport-Security，也无 Content-Security-Policy）
+# 演示副本（HTTPS :5106，UseHsts 与 CSP 头已挂；自签开发证书，演示用途）
+curl -sk -D - -o /dev/null -H "Host: demo.local" https://127.0.0.1:5106/health
+# HTTP/1.1 200 OK
+# Strict-Transport-Security: max-age=2592000
+# Content-Security-Policy: default-src 'self'
+# 框架行为如实记档：HSTS 中间件对 localhost 主机名抑制头输出（同一演示副本以
+# Host: localhost 请求时无 HSTS 头，CSP 照出），演示拍以 Host: demo.local 绕开抑制

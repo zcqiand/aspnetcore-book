@@ -1,0 +1,42 @@
+# 约定：$TOK=当前作用域 Bearer 调用凭证（值不录）；$TIDA/$TIDB/$RID/$MUID 为当次实抓 id
+# @b1a.json 一类请求体文件含中文，UTF-8 文件体，需按各拍体例自行建好后再发
+# 前置·认证装配：演示账号从仓里现成的登录入口换得调用凭证（clientId 契约必填；机制第 27 章展开）
+curl -s -X POST http://127.0.0.1:5104/api/v1/auth/login -H "Content-Type: application/json" \
+  -d '{"username":"<演示用户>","password":"<演示口令>","clientId":"demo_app_26"}'          # → 200
+# 拍1 建租户（平台面；租户B 同款再一单：demo_tenant_26b）
+curl -s -X POST http://127.0.0.1:5104/api/v1/admin/tenants -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b1a.json   # 体: {"tenantKey":"demo_tenant_26","name":"演示租户二十六"}  → 200
+# 拍2a 创建成员
+curl -s -X POST "http://127.0.0.1:5104/api/v1/tenants/$TIDA/members" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b2a.json   # 体: {"username":"demo_user_26","password":"<演示口令>","email":"user_26@demo.local"}  → 200
+# 拍2b 邀请成员
+curl -s -X POST "http://127.0.0.1:5104/api/v1/tenants/$TIDA/members/invitations" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b2b.json   # 体: {"email":"invitee_26@demo.local"}  → 200
+# 拍3a 创建角色
+curl -s -X POST "http://127.0.0.1:5104/api/v1/tenants/$TIDA/roles" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b3a.json   # 体: {"clientId":"demo_app_26","roleCode":"demo_role_26","roleName":"演示角色二十六"}  → 200
+# 拍3b 角色列表
+curl -s "http://127.0.0.1:5104/api/v1/tenants/$TIDA/roles?clientId=demo_app_26" -H "Authorization: Bearer $TOK"   # → 200
+# 拍4a 权限矩阵·整批设置角色菜单
+curl -s -X PUT "http://127.0.0.1:5104/api/v1/tenants/$TIDA/roles/$RID/menus?clientId=demo_app_26" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b4a.json   # 体: {"menuIds":["<演示菜单A id>","<演示菜单B id>"]}  → 200
+# 拍4b 权限矩阵·回读聚合
+curl -s "http://127.0.0.1:5104/api/v1/tenants/$TIDA/roles/$RID/menus?clientId=demo_app_26" -H "Authorization: Bearer $TOK"   # → 200
+# 拍5a 订阅应用
+curl -s -X POST "http://127.0.0.1:5104/api/v1/tenants/$TIDA/applications" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b5a.json   # 体: {"clientId":"demo_app_26"}  → 200
+# 拍5b 租户应用列表
+curl -s "http://127.0.0.1:5104/api/v1/tenants/$TIDA/applications" -H "Authorization: Bearer $TOK"   # → 200
+# 拍6 给成员分配角色
+curl -s -X PUT "http://127.0.0.1:5104/api/v1/tenants/$TIDA/members/$MUID/roles" -H "Content-Type: application/json; charset=utf-8" \
+  -H "Authorization: Bearer $TOK" --data-binary @b6a.json   # 体: {"roleIds":["<demo_role_26 的 id>"]}  → 200
+# 拍7a 当前用户身份链（memberships 两条，currentTenantId=租户A）
+curl -s http://127.0.0.1:5104/api/v1/me -H "Authorization: Bearer $TOK"   # → 200
+# 拍7b 切换租户（响应带回一串令牌，落档截断）
+curl -s -X POST "http://127.0.0.1:5104/api/v1/me/tenants/$TIDB/switch" -H "Authorization: Bearer $TOK"   # → 200
+
+# 代表回显·拍1 建租户：
+{"id":"0f3fb03b-23f3-4155-8bc4-90c5bc3faa2d","tenantKey":"demo_tenant_26","name":"演示租户二十六","status":"active","createdAt":"2026-09-30T11:37:11.8067428+00:00","updatedAt":"2026-09-30T11:37:11.8067742+00:00"}
+# 代表回显·拍7b 切换租户（令牌截断为前 12 字符加掩码标记）：
+{"accessToken":"eyJhbGciOiJI...<masked>","refreshToken":"saas-rt-76d0...<masked>","expiresAt":"2026-09-30T12:39:03.9791474+00:00","tenantId":"5d379e7f-d0b4-40ae-a9ae-fc248a882ecd"}
+# 全链十二发全 200，零重试；验证毕隔离库整库删除，环境清场

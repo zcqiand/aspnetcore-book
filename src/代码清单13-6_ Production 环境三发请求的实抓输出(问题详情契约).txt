@@ -1,0 +1,72 @@
+（格式示例, 时间为占位值, 三发响应与终端日志均为真机实抓; Content-Type 三发同为 application/problem+json, 本节最关键的一眼当场过验;
+ 中文在 JSON 正文里按 UTF-8 原样直出, 未转成 \uXXXX 转义形态, 与第 9 章清单9-6 的转义先例不同——两处框架组件的序列化器不同, 均以实抓为准;
+ type 链接由契约服务按状态码自动补齐, 分别指向 RFC 9110 的对应小节; traceId 扩展字段在本次实抓中未出现——契约处理器自己出的单里没有登记它）
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/unexpected
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/problem+json
+（此处省略数行头部…）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.6.1","title":"服务器内部错误","status":500,"detail":"服务器出了意外, 请稍后重试。"}
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/missing
+HTTP/1.1 404 Not Found
+Content-Type: application/problem+json
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"查无此单","status":404,"detail":"订单 99 不存在, 可查的编号是 1 到 3。"}
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/conflict
+HTTP/1.1 409 Conflict
+Content-Type: application/problem+json
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.10","title":"订单状态冲突","status":409,"detail":"订单 1 当前状态是「已取消」, 无法执行「发货」。"}
+（500, 404, 409 各归各位, 表 13-1 的三行至此全部对上号; 与 Development 相比, Production 的响应头部多出 Cache-Control: no-cache,no-store,
+ Expires: -1, Pragma: no-cache 三笔缓存控制头, 系异常通道接手时对响应头部的处理, 头部此处不再展开）
+
+（应用终端日志: 三发各记两笔 fail 行, 先一行框架侧异常处理中间件的, 再一行契约处理器的, 一一配对;
+ ErrorLab 未接 Serilog, Error 级在此呈现为 fail: 前缀的默认控制台样式, 第 11 章交代过两种样式的来历, 级别口径不变, 错误行不缺席）
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5700
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+（核对凭据: 切环境后 Hosting environment 显示 Production, 监听行仍为 5700; --no-launch-profile 启动不读模板端口, Overriding address(es) warn 未再出现）
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.IndexOutOfRangeException: Index was outside the bounds of the array.
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__1() in D:\Code\ErrorLab\Program.cs:line 46
+         at lambda_method2(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+fail: GlobalExceptionContractHandler[0]
+      全局异常处理接管: IndexOutOfRangeException 按错误契约映射为 500
+      System.IndexOutOfRangeException: Index was outside the bounds of the array.
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__1() in D:\Code\ErrorLab\Program.cs:line 46
+         at lambda_method2(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      OrderNotFoundException: 订单 99 不存在, 可查的编号是 1 到 3。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__2() in D:\Code\ErrorLab\Program.cs:line 59
+         at lambda_method3(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+fail: GlobalExceptionContractHandler[0]
+      全局异常处理接管: OrderNotFoundException 按错误契约映射为 404
+      OrderNotFoundException: 订单 99 不存在, 可查的编号是 1 到 3。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__2() in D:\Code\ErrorLab\Program.cs:line 59
+         at lambda_method3(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      OrderConflictException: 订单 1 当前状态是「已取消」, 无法执行「发货」。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__3() in D:\Code\ErrorLab\Program.cs:line 71
+         at lambda_method4(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+fail: GlobalExceptionContractHandler[0]
+      全局异常处理接管: OrderConflictException 按错误契约映射为 409
+      OrderConflictException: 订单 1 当前状态是「已取消」, 无法执行「发货」。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__3() in D:\Code\ErrorLab\Program.cs:line 71
+         at lambda_method4(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.Invoke(HttpContext context)
+（框架侧的 fail 行出自异常处理中间件自己, 与契约处理器的行一一配对; 清单13-2 把 Microsoft.AspNetCore 的级别闸设在 Warning, 拦不住 Error 级,
+ 与第 11 章降闸对照得出的结论同款, 按状态码定级的日志闸在这里同样拦不住这两类错误行）

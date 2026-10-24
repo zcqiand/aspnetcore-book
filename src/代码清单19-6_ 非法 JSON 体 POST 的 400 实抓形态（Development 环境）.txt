@@ -1,0 +1,11 @@
+（格式示例, 真机实抓; 开发期异常页文本很长, 首段照录, 中段异常栈以省略注交代）
+
+PS D:\Code\ApiLab> curl -i -X POST -H "Content-Type: application/json" --data-binary @bad-order.json http://localhost:6000/orders
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain; charset=utf-8
+Server: Kestrel
+Transfer-Encoding: chunked
+
+Microsoft.AspNetCore.Http.BadHttpRequestException: Failed to read parameter "Order order" from the request body as JSON.
+ ---> System.Text.Json.JsonException: Expected depth to be zero at the end of the JSON payload. There is an open JSON object or array that should be closed. Path: $.customer | LineNumber: 0 | BytePositionInLine: 13.
+（中段约 40 行异常栈从略, 末行止于开发者异常页中间件的调用帧; 形态即第 13 章的开发者异常页文本, 非 JSON 也非问题详情）

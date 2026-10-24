@@ -1,0 +1,53 @@
+（格式示例, 真机实抓; 响应头部仅首发展示, Date 等通用头部各行照旧省略）
+
+PS D:\Code\ApiLab> curl -i -X POST -H "Content-Type: application/json" --data-binary @order1.json http://localhost:6000/orders
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Server: Kestrel
+Location: /orders/1
+Transfer-Encoding: chunked
+
+{"id":1,"customer":"青屿生鲜","amount":2100,"status":"新单"}
+
+PS D:\Code\ApiLab> curl -i http://localhost:6000/orders
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+（头部同上, 此处省略）
+
+[{"id":1,"customer":"青屿生鲜","amount":2100,"status":"新单"},{"id":2,"customer":"南山果铺","amount":358,"status":"新单"}]
+
+PS D:\Code\ApiLab> curl -i http://localhost:6000/orders/99
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+（头部同上, 此处省略）
+
+"订单 99 不存在, 可先 POST /orders 新建一笔。"
+
+PS D:\Code\ApiLab> curl -i -X DELETE http://localhost:6000/orders/2
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+{"deleted":2}
+
+PS D:\Code\ApiLab> curl -i http://localhost:6000/whatever
+HTTP/1.1 404 Not Found
+（头部同上, 此处省略）
+
+"你访问的路径不存在, 订单相关操作从 /orders 进。"
+（其余各发同形态: 第二发 POST 得 201 与 Location: /orders/2, PUT 更新得 200 与改后全文,
+ PUT /orders/99 与 DELETE /orders/99 得 404 与各自人话）
+
+（应用终端日志摘录, 组级过滤器一次挂载、组内端点全部生效的证据段, 按发生序摘三对, 其余各对同款）
+info: AuditTrailFilter[0]
+      审计进入: POST /orders
+info: AuditTrailFilter[0]
+      审计离开: POST /orders -> 201
+info: AuditTrailFilter[0]
+      审计进入: GET /orders/99
+info: AuditTrailFilter[0]
+      审计离开: GET /orders/99 -> 404
+info: AuditTrailFilter[0]
+      审计进入: DELETE /orders/2
+info: AuditTrailFilter[0]
+      审计离开: DELETE /orders/2 -> 200
+（五对进出成对出现, 离开行记到的都是调用方真码; 两发 400 的请求在日志里零审计行, 缘由见清单19-6 之后的正文）

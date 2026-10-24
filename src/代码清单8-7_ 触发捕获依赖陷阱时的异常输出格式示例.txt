@@ -1,0 +1,11 @@
+（格式示例, 端口与堆栈细节以读者机器实际输出为准; 触发方式: 加上清单8-6 的错误写法 ReportCacheService
+ 与注册行 builder.Services.AddSingleton<ReportCacheService>(), 重新 dotnet run）
+
+PS D:\Code\LifetimeLab> dotnet run --urls=http://localhost:5400
+Building...
+Unhandled exception. System.AggregateException: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: LifetimeLab.Services.ReportCacheService Lifetime: Singleton ImplementationType: LifetimeLab.Services.ReportCacheService': Cannot consume scoped service 'LifetimeLab.Services.ScopedReportService' from singleton 'LifetimeLab.Services.ReportCacheService'.)
+ ---> System.InvalidOperationException: Cannot consume scoped service 'LifetimeLab.Services.ScopedReportService' from singleton 'LifetimeLab.Services.ReportCacheService'.
+      at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteValidator.VisitScopeCache(ServiceCallSite scopedCallSite, CallSiteValidatorState state)
+   （此处省略数行堆栈帧, 为容器构建调用链逐层的类名与方法名, 格式以实际输出为准）
+（注意: Development 默认校验把失败包成 AggregateException, 逐层 ---> 展开到最后那句 Cannot consume scoped service 才是病灶;
+  异常发生在 builder.Build(), 应用还没开始监听 5400 端口就已退出, curl 无处可打; Production 下实测静默启动, 不抛任何异常）

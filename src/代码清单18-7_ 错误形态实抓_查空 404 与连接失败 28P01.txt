@@ -1,0 +1,9 @@
+（真机实抓; 连接失败一轮以错误口令注入环境变量后拍得, 拍毕恢复, 主机与口令掩码）
+
+路一: 查空。GET /orders/dapper/find/HYB-NO-SUCH-99 → HTTP 404
+"订单号 HYB-NO-SUCH-99 在表里不存在, 先访问 /orders/hybrid 写一笔。"
+对照命中: GET /orders/dapper/find/HYB-213546665 → 订单11: HYB-213546665 混合直采 168 元。
+
+路二: 连不上。错误口令注入后启动, 进程在启动块当场退出, 日志核心句:
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+（端点 try/catch 接住的也是同一异常类型, 落 500 人话兜底; 异常类型以实抓原文为准）

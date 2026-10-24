@@ -1,0 +1,20 @@
+# 教学示意：三服务各占一节，service 名就是容器之间互相称呼的主机名
+services:
+  app:
+    build: .                 # 用仓根的 Dockerfile（清单39-1 那份）出镜像
+    ports:
+      - "5204:5204"          # 宿主机端口:容器端口；容器内监听 :5204 随窗
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Default: ${LAB_DB_CONNECTION}   # 双下划线对应配置层级，值从宿主机带进来
+      LAB_REDIS: ${LAB_REDIS}                            # 变量名字面示意，文件里不落真实值
+
+  db:
+    image: postgres          # tag 按部署决策钉死，教学示意不锁版本
+    ports:
+      - "5432:5432"
+
+  cache:
+    image: redis             # tag 按部署决策钉死，教学示意不锁版本
+    ports:
+      - "6379:6379"

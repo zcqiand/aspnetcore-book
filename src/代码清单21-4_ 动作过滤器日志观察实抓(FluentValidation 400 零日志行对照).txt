@@ -1,0 +1,14 @@
+（格式示例, 输出为真机实抓; 定案形态下一轮共六发请求, 应用终端日志全量摘录如下）
+（C1-C4 四发 FluentValidation 400: 零日志行; C5 合法 201 与 C6 查无 404: 成对进出）
+
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器进入: POST /api/v1/customers
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器离开: POST /api/v1/customers -> 200
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器进入: GET /api/v1/customers/99
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器离开: GET /api/v1/customers/99 -> 200
+（离开行记 200 是第 20 章存档过的读码时机坑, 本章不重复展开;
+  另, 手动验证路线的对照组里, 同一族 400 反而打出了成对进出日志,
+  因为那一发 400 出自动作方法体内, 过滤器看得到）

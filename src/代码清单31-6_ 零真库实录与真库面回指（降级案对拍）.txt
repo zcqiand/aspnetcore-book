@@ -1,0 +1,16 @@
+# InMemory 面（本章实抓，trx 在档）：saas 集成族八族过滤复跑
+dotnet test tests/Saas.Identity.AspNetCore.Tests.csproj --filter "FullyQualifiedName~ControllerTests|FullyQualifiedName~MeControllerSwitchTests|FullyQualifiedName~ErrorSemanticsTests|FullyQualifiedName~ModelStateValidationTests|FullyQualifiedName~PartialUpdateSemanticsTests" --logger "trx;LogFileName=chapter-31.saas-integration.trx"
+→ 失败: 0, 通过: 38, 已跳过: 0, 总计: 38, 持续时间: 6 s (net8.0)
+# 复跑环境：无 DATABASE_URL 环境变量、无 Docker、无 PostgreSQL 实例，38 条全绿零真库依赖
+
+# 鉴权三面请求实录（进程内宿主，定向复跑日志逐行摘录）
+Request starting HTTP/1.1 POST http://localhost/api/v1/auth/login - application/json; charset=utf-8
+Request finished HTTP/1.1 POST http://localhost/api/v1/auth/login - 401 - application/json; charset=utf-8 23.4761ms
+Request starting HTTP/1.1 PATCH http://localhost/api/v1/tenants/329ef9c6-.../members/a6c293b5-... - application/json; charset=utf-8
+Request finished HTTP/1.1 PATCH http://localhost/api/v1/tenants/329ef9c6-.../members/a6c293b5-... - 200 - application/json; charset=utf-8 2591.8131ms
+Request starting HTTP/1.1 PATCH http://localhost/api/v1/tenants/3b0eccf9-.../members/786111de-... - application/json; charset=utf-8
+Request finished HTTP/1.1 PATCH http://localhost/api/v1/tenants/3b0eccf9-.../members/786111de-... - 404 - application/json; charset=utf-8 2060.7107ms
+# 三面请求全部打向 http://localhost（进程内宿主），零真实网络端口
+
+# 真库面（如实记档，本轮未复跑）：LAB_TEST_DATABASE_URL 变量在本机不存在，远程共享 PG 不可达
+# 在案实录回指：第 26 章 26.4 节与第 27 章 27.1 节，建隔离库、注入连接串、跑需库族、验证毕整库删除、pg_database 复查 0 行

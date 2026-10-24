@@ -1,0 +1,25 @@
+// 示教形，非仓内实物，逐行现写；替后端接请求、按规则转发；示意服务名示意端口，均注明示意值
+{
+  "Routes": {
+    "route-catalog": {
+      "ClusterId": "cluster-catalog",
+      "Match": { "Path": "/catalog/{**rest}" }
+    },
+    "route-reports": {
+      "ClusterId": "cluster-reports",
+      "Match": { "Path": "/reports/{**rest}" }
+    }
+  },
+  "Clusters": {
+    "cluster-catalog": {
+      "Destinations": {
+        "d1": { "Address": "http://localhost:5001/" }    // 示意端口
+      }
+    },
+    "cluster-reports": {
+      "Destinations": {
+        "d1": { "Address": "http://localhost:5002/" }    // 示意端口
+      }
+    }
+  }
+}

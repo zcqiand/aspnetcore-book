@@ -1,0 +1,21 @@
+（格式示例, 毫秒数与堆栈细节以读者机器实际输出为准）
+
+（同一次运行中, 另开一个终端访问 /boom; 响应如下, 省略数行头部）
+PS D:\Code> curl -i http://localhost:5300/boom
+HTTP/1.1 500 Internal Server Error
+（此处省略数行头部, 同样以空行分界; 留意这个 500 响应的头部里没有 Content-Type——无参 WriteAsync 不设置它, 与第 5 章根路径 200 响应由框架补上 Content-Type 不同）
+服务器内部错误, 请稍后重试。
+
+（运行应用的那个终端依次打出三段日志）
+info: FirstWebApp[0]
+      日志中间件: 进入, GET /boom
+fail: FirstWebApp[0]
+      异常兜底中间件: 管道内发生未处理异常, 已接管响应
+      System.InvalidOperationException: 演示用异常: 订单数据越界了。
+         at Program.<>c.<<Main>$>b__0_4()（顶级语句程序由编译器生成 Program 类, 堆栈有删节, 序号与路径以实际输出为准, 这之下是调用链逐层的类名与方法名）
+info: FirstWebApp[0]
+      计时中间件: 本段管道耗时 … ms
+info: FirstWebApp[0]
+      日志中间件: 离开, 响应状态码 500
+（… 是毫秒数占位, 数值以实际输出为准; 对照清单7-3 看, 离开行的状态码从 200 换成了 500, 次序分毫未乱）
+（这说明回溯没有中断: 异常在最内环被中间件三接住, 对上游而言只是一次普通的正常返回, 日志与计时两个中间件的回溯半程照常执行）

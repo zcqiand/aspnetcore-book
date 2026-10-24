@@ -1,0 +1,14 @@
+PS D:\Code\OrderFlow> dotnet build
+  OrderFlow.Domain -> D:\Code\OrderFlow\OrderFlow.Domain\bin\Debug\net8.0\OrderFlow.Domain.dll
+  OrderFlow.App -> D:\Code\OrderFlow\OrderFlow.App\bin\Debug\net8.0\OrderFlow.App.dll
+  OrderFlow.Tests -> D:\Code\OrderFlow\OrderFlow.Tests\bin\Debug\net8.0\OrderFlow.Tests.dll
+已成功生成。
+    0 个警告
+    0 个错误
+
+PS D:\Code\OrderFlow> dotnet test OrderFlow.Tests
+  OrderFlow.Tests -> D:\Code\OrderFlow\OrderFlow.Tests\bin\Debug\net8.0\OrderFlow.Tests.dll
+  已通过 OrderPricerTests.CalculateTotal_合法订单_返回单价乘以数量 [2 ms]
+  已通过 OrderPricerTests.CalculateTotal_负金额_抛出ArgumentOutOfRange [1 ms]
+  已通过 OrderPricerTests.CalculateTotal_空白客户名_抛出Argument [1 ms]
+已通过! - 失败:     0, 已通过:     3, 已跳过:     0, 总计:     3, 持续时间: < 1 ms

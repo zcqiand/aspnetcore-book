@@ -1,0 +1,32 @@
+（格式示例, 提示符路径与毫秒数以读者机器实际输出为准）
+
+PS D:\Code\FirstWebApp> dotnet run
+Building...
+warn: Microsoft.AspNetCore.Server.Kestrel[0]
+      Overriding address(es) 'http://localhost:5247'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+（旧端口数值以你机器 launchSettings.json 里登记的为准; 这两行 warn 是第 6 章 6.4 节解释过的 Kestrel 覆盖提示, 属预期现象）
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5300
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\Code\FirstWebApp
+（此后程序停驻等请求, 停止按 Ctrl+C; 第 6 章的检查点与停机日志已随清单7-1 摘除, 这里不会再出现）
+
+（另开一个终端, 访问根路径; 响应本身如下, 省略数行头部, 体例同第 5 章清单5-4）
+PS D:\Code> curl -i http://localhost:5300/
+HTTP/1.1 200 OK
+（此处省略数行头部, 同样以空行分界）
+这是来自 FirstWebApp 的问候: 你的第一个 ASP.NET Core 应用正在运行。
+
+（同一时刻, 运行应用的那个终端打出三行管道日志, 缩进体例同第 6 章清单6-3 的检查点日志）
+info: FirstWebApp[0]
+      日志中间件: 进入, GET /
+info: FirstWebApp[0]
+      计时中间件: 本段管道耗时 … ms
+info: FirstWebApp[0]
+      日志中间件: 离开, 响应状态码 200
+（… 是毫秒数占位, 数值以你机器本次运行的实际输出为准; 三行的先后次序每次都固定不变）
+（注意: 异常兜底中间件在这条请求上全程无声——没有异常可接, catch 分支根本不会进入, 这是正常路径的常态）

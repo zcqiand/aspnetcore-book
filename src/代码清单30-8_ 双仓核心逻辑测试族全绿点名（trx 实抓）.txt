@@ -1,0 +1,7 @@
+# saas 三族过滤复跑（守卫 3 + 失败锁定 5 + 登录态存储 5，trx 在档）
+dotnet test --filter "FullyQualifiedName~TenantGuardTests|FullyQualifiedName~FailedLoginStoreTest|FullyQualifiedName~SaasSessionStoreTest"
+已通过! - 失败:     0，通过:    13，已跳过:     0，总计:    13，持续时间: 214 ms - Saas.Identity.AspNetCore.Tests.dll (net8.0)
+
+# lab Services 族过滤复跑（10 个测试文件，零触库离线，trx 在档）
+dotnet test --filter "FullyQualifiedName~Lab.AspNetCore.Tests.Services"
+已通过! - 失败:     0，通过:   170，已跳过:     0，总计:   170，持续时间: 76 ms - Lab.AspNetCore.Tests.dll (net8.0)

@@ -1,0 +1,38 @@
+（格式示例, 配置值、实例 ID 与创建时刻均为占位值, 以读者机器实际输出为准; 进入日志只在第 1 次请求前完整展示, 其后从略; 端口 5400 来自清单9-5 的 --urls 参数）
+
+PS D:\Code\LifetimeLab> curl http://localhost:5400/options
+info: LifetimeLab[0]
+      /options 请求进入, 输出三个接口各自读到的 Report 配置
+
+（第 1 次请求的响应正文, 改配置前, 三行完全相同）
+IOptions          => Title=LifetimeLab 生命周期报表, MaxRows=100, RetryCount=3, DefaultFormat=csv
+IOptionsSnapshot  => Title=LifetimeLab 生命周期报表, MaxRows=100, RetryCount=3, DefaultFormat=csv
+IOptionsMonitor   => Title=LifetimeLab 生命周期报表, MaxRows=100, RetryCount=3, DefaultFormat=csv
+
+（保持应用运行, 把 appsettings.json 的 Report:MaxRows 从 100 改成 200 并保存, 再打第 2 次）
+PS D:\Code\LifetimeLab> curl http://localhost:5400/options
+
+（第 2 次请求的响应正文, 只有 IOptions 一行停在旧值 100, 另两行已是新值 200）
+IOptions          => Title=LifetimeLab 生命周期报表, MaxRows=100, RetryCount=3, DefaultFormat=csv
+IOptionsSnapshot  => Title=LifetimeLab 生命周期报表, MaxRows=200, RetryCount=3, DefaultFormat=csv
+IOptionsMonitor   => Title=LifetimeLab 生命周期报表, MaxRows=200, RetryCount=3, DefaultFormat=csv
+
+PS D:\Code\LifetimeLab> curl "http://localhost:5400/export?format=csv"
+（csv 成功输出, 表头 1 行加数据 3 行; 实例 ID 与创建时刻每次请求都会更换, 此处沿用第 8 章的占位值）
+index,content
+0,Singleton 实例 ID=7f3c9a02(创建于 15:02:11.305)
+1,Scoped 实例 ID=b41e8d67(创建于 15:02:11.310)
+2,Transient 实例 ID=c9d2f048(创建于 15:02:11.310)
+
+PS D:\Code\LifetimeLab> curl "http://localhost:5400/export?format=json"
+（json 成功输出, 缩进 JSON 数组; 默认编码器把非 ASCII 字符确定性地转义成 \uXXXX,
+中文显示为转义序列是真实行为、不是乱码, 行内容与 csv 语义相同、显示形态不同, csv/text 两格式才是肉眼直读的载体）
+[
+  "Singleton \u5B9E\u4F8B ID=7f3c9a02(\u521B\u5EFA\u4E8E 15:02:11.305)",
+  "Scoped \u5B9E\u4F8B ID=b41e8d67(\u521B\u5EFA\u4E8E 15:02:11.310)",
+  "Transient \u5B9E\u4F8B ID=c9d2f048(\u521B\u5EFA\u4E8E 15:02:11.310)"
+]
+
+PS D:\Code\LifetimeLab> curl "http://localhost:5400/export?format=xml"
+（未知格式, 400 响应, 正文只有错误提示与支持格式清单, 不含任何报表数据）
+未知导出格式「xml」, 当前支持: csv/json/text。

@@ -1,0 +1,28 @@
+# 约定：$TOK=当前作用域 Bearer 调用凭证（值不录；令牌与 cookie 回显一律前 12 字符加掩码）
+# 拍1 登录（demo_user_27 为虚构演示账号；dev seed 口径 dev-only，生产须换 argon2 等哈希）
+curl -s -X POST http://127.0.0.1:5104/api/v1/auth/login -H "Content-Type: application/json" \
+  -d '{"username":"demo_user_27","password":"demo-pass-27-fictional","clientId":"lab-management"}'   # → 200
+# 代表回显·拍1（全字段照录，令牌掩码）：
+{"user": {"id": "b19d41f8-ebac-4be7-81a3-8fe72ceb0a7a", "username": "demo_user_27", "email": "demo_user_27@demo.local", "mobile": null, "status": "active", "failedAttempts": 0, "lockedUntil": "0001-01-01T00:00:00+00:00", "createdAt": "2026-09-30T13:08:54.699289+00:00", "updatedAt": "2026-09-30T13:08:54.699334+00:00"},
+ "availableTenants": [{"id": "ba29a8df-72f7-43eb-8ece-e93734b442b8", "userId": "b19d41f8-ebac-4be7-81a3-8fe72ceb0a7a", "tenantId": "00000000-0000-0000-0000-000000000001", "roleIds": [], "status": "active", "joinedAt": "2026-09-30T13:08:54.70151+00:00"}],
+ "userId": "b19d41f8-ebac-4be7-81a3-8fe72ceb0a7a",
+ "currentTenantId": "00000000-0000-0000-0000-000000000001",
+ "accessToken": "eyJhbGciOiJI...<masked>",
+ "refreshToken": "refresh-b19d...<masked>",
+ "tokenType": "Bearer",
+ "expiresIn": 3600,
+ "clientId": "lab-management"}
+# 响应头双轨：Set-Cookie: saasSession=Vc-HFFNtDfAu...<masked>; expires=Thu, 01 Oct 2026 13:09:15 GMT; path=/api; samesite=lax; httponly
+# 拍2 无令牌访问受保护端点
+curl -s http://127.0.0.1:5104/api/v1/me   # → 401 {"code":"UNAUTHORIZED","message":"no JWT sub claim"}
+# 拍3 带访问令牌
+curl -s http://127.0.0.1:5104/api/v1/me -H "Authorization: Bearer $TOK"   # → 200
+# 拍4 切换租户换新（saas 登录路径不设刷新端点，换新由切换租户承接；本拍以名下两租户的 seed 演示账号执行）
+curl -s -X POST "http://127.0.0.1:5104/api/v1/me/tenants/00000000-0000-0000-0000-000000000002/switch" -H "Authorization: Bearer $TOK"   # → 200
+# 代表回显·拍4（换发的新对；sub 不变、tenant_id 换新）：
+{"accessToken":"eyJhbGciOiJI...<masked>","refreshToken":"saas-rt-0000...<masked>","expiresAt":"2026-09-30T14:10:21.7397224+00:00","tenantId":"00000000-0000-0000-0000-000000000002"}
+# 拍5 登出
+curl -s -X POST http://127.0.0.1:5104/api/v1/auth/logout -H "Authorization: Bearer $TOK"   # → 204 空体，响应无 Set-Cookie
+# 拍6 登出后旧访问令牌再访（同一枚拍3 令牌）
+curl -s http://127.0.0.1:5104/api/v1/me -H "Authorization: Bearer $TOK"   # → 200
+# 全链六拍实抓毕；验证毕隔离库 saas_ch27 整库删除，pg_database 复查 0 行，环境清场

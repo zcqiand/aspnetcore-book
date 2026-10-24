@@ -1,0 +1,23 @@
+（真机实抓; N=10 笔订单每单 3 条明细, 耗时为当轮原值, 库在远程测试服务端, 版本号以 x 代替）
+
+GET /orders/lazy 返回正文首行:
+遍历 10 笔订单取明细, 明细合计 30 条, 耗时 1137 毫秒。
+（第二发: 耗时 1331 毫秒）
+
+服务端日志: 该请求期间查询共 11 条 = 1 + N。第 1 条主查询:
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (71ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT o."Id", o."Amount", o."Customer", o."OrderNumber"
+      FROM "Orders" AS o
+      ORDER BY o."Id"
+随后 10 条逐单明细查询, 逐字同款仅参数不同（此处摘第 1 条与条数标注, 余略）:
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (76ms) [Parameters=[@__p_0='?' (DbType = Int64)], CommandType='Text', CommandTimeout='30']
+      SELECT o."Id", o."OrderId", o."Product", o."Quantity", o."UnitPrice"
+      FROM "OrderItems" AS o
+      WHERE o."OrderId" = @__p_0
+（随后还有 9 条同款查询, @__p_0 依次为 2 到 10; 每条约 70 毫秒 —— 差的不是每条的速度,
+ 是往返的条数: 11 次网络往返 × 约 70 毫秒, 就是 1137 毫秒的主要来路）
+
+对照: Include 预加载端点（清单17-5）同机同数据三发耗时原值:
+189 毫秒 / 144 毫秒 / 143 毫秒 —— 查询条数 1 对 11, 耗时约为懒加载的八分之一。

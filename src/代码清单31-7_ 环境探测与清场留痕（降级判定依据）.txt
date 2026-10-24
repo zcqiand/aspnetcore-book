@@ -1,0 +1,14 @@
+# Docker 探测（PowerShell 独立进程实测，三轮证据一致）
+docker version → CommandNotFoundException: "docker" 未被识别
+C:\Program Files\Docker\Docker\resources\bin\docker.exe → False（安装路径零命中）
+PATH 中含 "docker" 条目 → 空；Get-Service *docker* → 零服务
+# 判定：Docker 不可用，容器实拍降级，零容器实录
+
+# 双仓工作树留痕（收尾核验）
+saas git status --porcelain → 3 行，全部为轮前既有 untracked（handoff.json、tests/Teaching/、tests/TestResults/）
+lab  git status --porcelain → 1 行（handoff.json）
+# 本轮双仓零新增文件、零修改、零提交、零 git add
+
+# 清场面
+隔离库：本轮零建库，DROP 不适用；容器：零容器，清理不适用；教学工作副本：降级案未创建
+端口：零残留（5105 端口既有监听系他线常驻服务，非本轮产物，未触碰）

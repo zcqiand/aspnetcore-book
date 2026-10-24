@@ -1,0 +1,8 @@
+# 框架默认键目录实查（路径用户名段脱敏；键文件内容与密钥材料零复录，只看形态）
+ls -la "$LOCALAPPDATA/ASP.NET/DataProtection-Keys"
+# → key-0f50dcd0-130d-42da-8d46-05900b87e689.xml (1885 bytes)  mtime 2024-07-18
+# → key-a89c1322-9421-40b6-a1e3-10b93aaf746c.xml (1885 bytes)  mtime 2026-08-13
+# → key-d3b4f07a-2adc-4618-bd64-a80a0d89ef7d.xml (1885 bytes)  mtime 2024-11-17
+# 三个键文件时间戳各自独立：目录自建、键自生成，形态即框架自管
+# 演示副本侧（清单29-6 配置持久化目录后）：启动即在指定目录生成键文件，形态同上，
+# 启动警告「No XML encryptor configured」与键以未加密形态落盘互证：配置决定落盘位置

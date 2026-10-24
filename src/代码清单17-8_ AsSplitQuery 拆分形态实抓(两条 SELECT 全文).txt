@@ -1,0 +1,18 @@
+（真机实抓; 每发恰此两条查询, 版本号以 x 代替）
+
+第 1 条, 主表:
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (479ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT o."Id", o."Amount", o."Customer", o."OrderNumber"
+      FROM "Orders" AS o
+      ORDER BY o."Id"
+第 2 条, 明细:
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (72ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT o0."Id", o0."OrderId", o0."Product", o0."Quantity", o0."UnitPrice", o."Id"
+      FROM "Orders" AS o
+      INNER JOIN "OrderItems" AS o0 ON o."Id" = o0."OrderId"
+      ORDER BY o."Id"
+（值得注意两处: 第 2 条用 INNER JOIN + 拖一路主表键 o."Id", 是 EF 把明细行对回主表行的信物;
+ 行数不再相乘, 代价换成多一条查询 —— 条数 2 对 1, 行数不乘, 首发多付的
+ 479 毫秒是连接预热, 稳定态两发 144 毫秒, 与单条 JOIN 同档）

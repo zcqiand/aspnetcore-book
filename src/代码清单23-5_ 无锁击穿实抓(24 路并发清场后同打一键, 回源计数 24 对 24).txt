@@ -1,0 +1,11 @@
+（真机实抓; 先 POST /experiment/reset/1 清空两级缓存并归零计数,
+ 随后 24 条独立进程并发同打 GET /experiment/order/1?useLock=false）
+
+=== reset done, launching 24 concurrent curl (LOCK=OFF) ===
+WALL_MS=1293
+stats:
+{"backfillCount":24}
+DB      24
+
+（24 路请求的应答 source 字段全部标着 DB: 回源计数 24 对 24, 击穿显形;
+ 墙钟 1293 毫秒里躺着 24 次数据库往返）

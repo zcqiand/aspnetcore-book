@@ -1,0 +1,16 @@
+# .NET 构建产物
+bin/
+obj/
+
+# Python（清单内示例）
+__pycache__/
+*.pyc
+.venv/
+
+# Node（清单内示例）
+node_modules/
+
+# 日志与系统文件
+*.log
+.DS_Store
+Thumbs.db

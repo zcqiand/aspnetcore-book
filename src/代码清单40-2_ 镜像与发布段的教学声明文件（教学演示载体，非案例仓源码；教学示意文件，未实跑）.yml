@@ -1,0 +1,33 @@
+# 教学示意：触发、检查、发布三段；前一段不过，后一段不动
+on:
+  push:
+    tags: ["v*"]              # 带版本号的标签推上来才触发
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: build and test
+        run: dotnet build && dotnet test
+
+  release:
+    needs: check               # 检查作业不过，发布作业不动
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build image
+        run: docker build -t registry.example.com/lab-app:${{ github.ref_name }} .
+      - name: push image
+        run: |
+          echo "${{ secrets.REGISTRY_TOKEN }}" | docker login registry.example.com --password-stdin
+          docker push registry.example.com/lab-app:${{ github.ref_name }}
+      - name: deploy
+        run: ./deploy.sh
+        env:                   # 地址与密钥走引用名，值不落纸
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}

@@ -1,0 +1,21 @@
+（格式示例, 毫秒数以读者机器实际输出为准; 实验前先把清单7-1 第三段 app.Use 整段注释掉, 保存后重新 dotnet run）
+
+PS D:\Code> curl -i http://localhost:5300/boom
+HTTP/1.1 500 Internal Server Error
+（正文不再是「服务器内部错误, 请稍后重试。」, 而是 Development 环境下框架默认的异常详情页,
+ 状态行之下是一整页异常类型、消息与堆栈的展示内容, 格式以实际为准, 此处不展开）
+
+（运行应用的那个终端, 这次打出三段）
+info: FirstWebApp[0]
+      日志中间件: 进入, GET /boom
+info: FirstWebApp[0]
+      计时中间件: 本段管道耗时 … ms
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      （其下跟着完整堆栈, Development 环境下必然出现, 格式以实际输出为准）
+（日志中间件的离开行没有出现; 第三段正是「没人接住的异常最终由框架默认机制兜底」在日志侧的实证）
+
+（三个观察点, 逐条对照清单7-4:
+ 1. 耗时行仍在——异常正沿回溯通道往上飞, 计时中间件的 finally 照跑不误, 「异常路径也计时」言出必行;
+ 2. 离开行消失——await next() 把异常原样抛了上来, 日志中间件的回溯半程没有执行到, 「进出各打一行」只完成了一半;
+ 3. 响应退化——异常最终由框架默认机制兜底, 客户端拿到的是异常详情页而非一句人话提示）

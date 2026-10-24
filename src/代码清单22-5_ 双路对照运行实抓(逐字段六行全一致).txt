@@ -1,0 +1,12 @@
+（输出摘录: 两路各自的明细打印已略, 逐字段对照段与 DI 抽测为实抓原样）
+（源数据: 望江茶行, 含嵌套地址与两条联系方式; 运行方式: dotnet run）
+
+== 双路逐字段对照 ==
+  Id             手写=[1]  AutoMapper=[1]  一致
+  Name           手写=[望江茶行]  AutoMapper=[望江茶行]  一致
+  ContactEmail   手写=[tea@wangjiang.example]  AutoMapper=[tea@wangjiang.example]  一致
+  HomeCity       手写=[临江市]  AutoMapper=[临江市]  一致
+  FullAddress    手写=[临江市 望江路 88 号]  AutoMapper=[临江市 望江路 88 号]  一致
+  ContactPhones  手写=[13911112222|13800001111]  AutoMapper=[13911112222|13800001111]  一致
+
+== DI 路线抽测: Name=望江茶行, ContactEmail=tea@wangjiang.example ==

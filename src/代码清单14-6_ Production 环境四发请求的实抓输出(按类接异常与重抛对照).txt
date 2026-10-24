@@ -1,0 +1,70 @@
+（格式示例, 时间为占位值, 四发响应与终端日志均为真机实抓; 头部展示原则同清单14-5,
+ /ex/unexpected 的三笔缓存控制头单独留全——它们是异常通道接手的痕迹;
+ 堆栈里的文件路径按正文约定的项目位置书写, 行号与清单14-3 逐行对应）
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/ex/missing
+HTTP/1.1 404 Not Found
+Content-Type: text/plain; charset=utf-8
+（此处省略数行头部…）
+
+订单 99 不存在, 可查的编号是 1 到 3。
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/ex/conflict
+HTTP/1.1 409 Conflict
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+订单 1 当前状态是「已取消」, 无法执行「发货」。
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/ex/unexpected
+HTTP/1.1 500 Internal Server Error
+Content-Type: text/plain; charset=utf-8
+Cache-Control: no-cache,no-store
+Expires: -1
+Pragma: no-cache
+（头部同上, 此处省略其余行）
+
+服务器出了意外, 请稍后重试。
+（三发对照: 前两发被过滤器接住映射, 管道层零动静; 第三发重抛, 500 与三笔缓存控制头出自异常通道,
+ 正文「服务器出了意外」由 /oops 兜底端点给出, 与清单13-6 的兜底正文同一句）
+
+PS D:\Code\FilterLab> curl -i http://localhost:5800/orders/2
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+（头部同上, 此处省略）
+
+订单2: 阿里山茶行 x1
+
+（应用终端日志: 前两发各一行过滤器 warn, 异常处理中间件与 /oops 毫无动静——接住不重抛, 管道层零可见;
+ 第三发三笔 fail 行配对——过滤器记一笔重抛, 中间件记一笔, /oops 触达行收尾;
+ 收尾的审计两行属于第四发, 离开行记到的又是真码 200）
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5800
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+（核对凭据: 切环境后 Hosting environment 显示 Production, 监听行仍为 5800; --no-launch-profile 启动不读模板端口,
+ Overriding address(es) warn 未再出现）
+warn: ExceptionToStatusFilter[0]
+      过滤器按类接管: OrderNotFoundException 映射为 404
+warn: ExceptionToStatusFilter[0]
+      过滤器按类接管: OrderConflictException 映射为 409
+fail: ExceptionToStatusFilter[0]
+      过滤器映射表未登记 IndexOutOfRangeException, 原样重抛交管道层
+      System.IndexOutOfRangeException: Index was outside the bounds of the array.
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__9() in D:\Code\FilterLab\Program.cs:line 98
+         at lambda_method26(Closure, EndpointFilterInvocationContext)
+         at ExceptionToStatusFilter.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in D:\Code\FilterLab\Program.cs:line 202
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.IndexOutOfRangeException: Index was outside the bounds of the array.
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__9() in D:\Code\FilterLab\Program.cs:line 98
+         at lambda_method26(Closure, EndpointFilterInvocationContext)
+         at ExceptionToStatusFilter.InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next) in D:\Code\FilterLab\Program.cs:line 202
+         at Microsoft.AspNetCore.Http.RequestDelegateFactory.<ExecuteValueTaskOfObject>g__ExecuteAwaited|129_0(ValueTask`1 valueTask, HttpContext httpContext, JsonTypeInfo`1 jsonTypeInfo)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: FilterLab[0]
+      管道层 /oops 兜底被触达, 异常穿透了过滤器: /oops
+info: AuditTrailFilter[0]
+      审计进入: GET /orders/2
+info: AuditTrailFilter[0]
+      审计离开: GET /orders/2 -> 200

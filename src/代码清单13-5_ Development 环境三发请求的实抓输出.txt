@@ -1,0 +1,54 @@
+（格式示例, 时间为占位值, 三发响应与终端日志均为真机实抓; 三发状态行同为 500 Internal Server Error,
+ Content-Type 同为 application/problem+json, 头部仅首发展示;
+ 本章登记了契约服务, 开发者异常页在 ErrorLab 的出单随之走问题详情格式, 异常的类型, 消息与堆栈全文住进 exception 扩展字段;
+ 堆栈里的文件路径按正文约定的项目位置书写, 行号与清单13-3 逐行对应）
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/unexpected
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/problem+json
+（此处省略数行头部…）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.6.1","title":"System.IndexOutOfRangeException","status":500,"detail":"Index was outside the bounds of the array.","exception":{"details":"System.IndexOutOfRangeException: Index was outside the bounds of the array.\r\n   at Program.<>c__DisplayClass0_0.<<Main>$>b__1() in D:\\Code\\ErrorLab\\Program.cs:line 46\r\n   at lambda_method2(Closure, Object, HttpContext)\r\n   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)","headers":{"Accept":["*/*"],"Host":["localhost:5700"],"User-Agent":["curl/8.6.0"]},"path":"/demo/unexpected","endpoint":"HTTP: GET /demo/unexpected","routeValues":{}}}
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/missing
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/problem+json
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.6.1","title":"OrderNotFoundException","status":500,"detail":"订单 99 不存在, 可查的编号是 1 到 3。","exception":{"details":"OrderNotFoundException: 订单 99 不存在, 可查的编号是 1 到 3。\r\n   at Program.<>c__DisplayClass0_0.<<Main>$>b__2() in D:\\Code\\ErrorLab\\Program.cs:line 59\r\n   at lambda_method3(Closure, Object, HttpContext)\r\n   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)","headers":{"Accept":["*/*"],"Host":["localhost:5700"],"User-Agent":["curl/8.6.0"]},"path":"/demo/missing","endpoint":"HTTP: GET /demo/missing","routeValues":{}}}
+
+PS D:\Code\ErrorLab> curl -i http://localhost:5700/demo/conflict
+HTTP/1.1 500 Internal Server Error
+Content-Type: application/problem+json
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.6.1","title":"OrderConflictException","status":500,"detail":"订单 1 当前状态是「已取消」, 无法执行「发货」。","exception":{"details":"OrderConflictException: 订单 1 当前状态是「已取消」, 无法执行「发货」。\r\n   at Program.<>c__DisplayClass0_0.<<Main>$>b__3() in D:\\Code\\ErrorLab\\Program.cs:line 71\r\n   at lambda_method4(Closure, Object, HttpContext)\r\n   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)","headers":{"Accept":["*/*"],"Host":["localhost:5700"],"User-Agent":["curl/8.6.0"]},"path":"/demo/conflict","endpoint":"HTTP: GET /demo/conflict","routeValues":{}}}
+（三发同为 500: 异常类型各不相同, 状态码却是同一个, 契约的映射表在 Development 不生效, 这一半现象留待第二组对照）
+
+（应用终端日志: 启动行三发期间无新增 info 行, 每发各记一条 DeveloperExceptionPageMiddleware 的 fail 级日志, 异常全文与堆栈在账,
+ 第 7 章清单7-5 同款字面; 契约处理器的日志行一次都未出现——全局异常处理在 Development 未挂载, 这也是核对项之一）
+warn: Microsoft.AspNetCore.Server.Kestrel[0]
+      Overriding address(es) 'http://localhost:5209'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5700
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+（首启 warn 两行: 模板登记的随机端口被清单13-2 覆盖, 第 6 章 6.4 节解释过的预期现象; 其余启动行照旧省略）
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.IndexOutOfRangeException: Index was outside the bounds of the array.
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__1() in D:\Code\ErrorLab\Program.cs:line 46
+         at lambda_method2(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      OrderNotFoundException: 订单 99 不存在, 可查的编号是 1 到 3。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__2() in D:\Code\ErrorLab\Program.cs:line 59
+         at lambda_method3(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      OrderConflictException: 订单 1 当前状态是「已取消」, 无法执行「发货」。
+         at Program.<>c__DisplayClass0_0.<<Main>$>b__3() in D:\Code\ErrorLab\Program.cs:line 71
+         at lambda_method4(Closure, Object, HttpContext)
+         at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)

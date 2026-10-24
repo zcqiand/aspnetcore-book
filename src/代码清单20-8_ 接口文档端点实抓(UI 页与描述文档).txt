@@ -1,0 +1,41 @@
+（格式示例, 输出为真机实抓, 取自钉带复装后的最终状态; 头部仅首发展示）
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/swagger
+HTTP/1.1 301 Moved Permanently
+Content-Length: 0
+Server: Kestrel
+Location: swagger/index.html
+（/swagger 不带尾路径, 301 指路到 UI 页本体）
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/swagger/index.html
+HTTP/1.1 200 OK
+Content-Type: text/html;charset=utf-8
+Server: Kestrel
+Transfer-Encoding: chunked
+
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+（UI 页本体可达, 此后各行从略; 排障提醒: 取这个页的状态行要用 GET, HEAD 请求会被静态文件中间件回 404, 抄近路会扑空）
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/swagger/v1/swagger.json
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=utf-8
+（头部同上, 此处省略）
+
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ApiLab",
+    "version": "1.0"
+  },
+  "paths": {
+    "/orders": { "get": { ... }, "post": { ... } },
+    "/orders/{id}": { "delete": { ... }, "get": { ... }, "put": { ... } },
+    "/api/v1/customers": { "get": { ... }, "post": { ... } },
+    "/api/v1/customers/{id}": { "delete": { ... }, "get": { ... }, "put": { ... } }
+  }
+（paths 四键为真机抓取后解析的全清单原文, 各键内的端点细节从略; 数据模型两式 Customer 与 Order 同在档）

@@ -1,0 +1,7 @@
+# 摘录自真机日志，中间几轮落空的协商从略；连接标识以 <连接标识> 占位
+Error: Connection disconnected with error 'Error: WebSocket closed with status code: 1006 (no reason given).'
+[onreconnecting] WebSocket closed with status code: 1006 (no reason given).
+Error: Failed to complete negotiation with the server: TypeError: fetch failed
+（服务端不在场，重试按约 0/2/10/30 秒的内置节奏推进，前三档落空，从略）
+Information: WebSocket connected to ws://localhost:6300/hubs/chat?id=<连接标识>.
+[onreconnected] 新连接 id: <连接标识，与断线前不同>

@@ -1,0 +1,81 @@
+（格式示例, 输出均为真机实抓; 响应头部仅首发展示, 后发同款省略; traceId 仅首处照录）
+（体文件内容见清单20-5 的 printf 五行）
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/cust1.json http://localhost:6000/api/v1/customers
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Server: Kestrel
+Location: http://localhost:6000/api/v1/customers/1
+Transfer-Encoding: chunked
+
+{"id":1,"name":"青屿生鲜","email":"service@qingyu.example"}
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/cust2.json http://localhost:6000/api/v1/customers
+HTTP/1.1 201 Created
+（头部同上, 此处省略）
+Location: http://localhost:6000/api/v1/customers/2
+
+{"id":2,"name":"南山果铺","email":"fruit@nanshan.example"}
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/cust1.json http://localhost:6000/api/v1/customers
+HTTP/1.1 409 Conflict
+Content-Type: application/problem+json; charset=utf-8
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.10","title":"资源冲突","status":409,"detail":"客户「青屿生鲜」已存在, 不可重名。","traceId":"00-1e51618ab4cd40ae0d555f4afc122b2f-2f9e2be05fd5ef30-00"}
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/api/v1/customers/99
+HTTP/1.1 404 Not Found
+Content-Type: application/problem+json; charset=utf-8
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"资源不存在","status":404,"detail":"客户 99 不存在。","traceId":"00-a83d8a7726c30b191a6b83b61d1e845e-dc1c335e3a303b1c-00"}
+
+PS D:\Code\ApiLab> curl -s -i -X PUT -H "Content-Type: application/json" --data-binary @/tmp/cust1-update.json http://localhost:6000/api/v1/customers/1
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+{"id":1,"name":"青屿生鲜·旗舰店","email":"flagship@qingyu.example"}
+
+PS D:\Code\ApiLab> curl -s -i -X PUT -H "Content-Type: application/json" --data-binary @/tmp/cust1-update.json http://localhost:6000/api/v1/customers/1
+HTTP/1.1 200 OK
+（头部同上, 此处省略）
+
+{"id":1,"name":"青屿生鲜·旗舰店","email":"flagship@qingyu.example"}
+（第二发与第一发除日期头外逐字一致; 随后 GET /api/v1/customers/1 的正文与之一致）
+
+PS D:\Code\ApiLab> curl -s -i -X DELETE http://localhost:6000/api/v1/customers/2
+HTTP/1.1 204 No Content
+（204 无正文无 Content-Type）
+
+PS D:\Code\ApiLab> curl -s -i -X DELETE http://localhost:6000/api/v1/customers/2
+HTTP/1.1 404 Not Found
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.5","title":"资源不存在","status":404,"detail":"客户 2 不存在, 无从删除。"}
+（删后查询 /api/v1/customers/2 同得 404, 正文为「客户 2 不存在。」）
+
+PS D:\Code\ApiLab> curl -s -i -X POST -H "Content-Type: application/json" --data-binary @/tmp/cust-bad.json http://localhost:6000/api/v1/customers
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+（头部同上, 此处省略）
+
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"Name":["客户名不能为空"]},"traceId":"00-d3896c9e901f6fa5e8123197cf5914db-8ce4d16a83399dc4-00"}
+
+PS D:\Code\ApiLab> curl -s -i http://localhost:6000/orders/99
+HTTP/1.1 500 Internal Server Error
+（旧组冒烟, 头部省略; 正文首行为 Npgsql 连接被拒的异常, 库缺席所致, 全文从略）
+
+（另一轮验证的应用终端日志摘录: 动作过滤器两对进出, 与第 19 章端点过滤器一对, 同页并立）
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器进入: POST /api/v1/customers
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器离开: POST /api/v1/customers -> 200
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器进入: GET /api/v1/customers/99
+info: ApiLab.Controllers.AuditLogActionFilter[0]
+      动作过滤器离开: GET /api/v1/customers/99 -> 200
+info: AuditTrailFilter[0]
+      审计进入: GET /orders/99
+info: AuditTrailFilter[0]
+      审计离开: GET /orders/99 -> 500

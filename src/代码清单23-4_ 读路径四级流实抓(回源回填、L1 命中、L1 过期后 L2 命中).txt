@@ -1,0 +1,23 @@
+（真机实抓; curl 打点, source 字段标明数据来路, 回源计数经 /experiment/stats 回显）
+
+=== 清场 ===
+{"reset":"order:1","backfillCount":0}
+=== 首查(预期回源) ===
+{"source":"DB","order":{"id":1,"customerName":"客户-1","amount":100}}
+=== stats ===
+{"backfillCount":1}
+=== 二查(预期 L1) ===
+{"source":"L1","order":{"id":1,"customerName":"客户-1","amount":100}}
+=== 待 L1 的 30 秒寿限过后再发(预期 L2) ===
+{"source":"L2","order":{"id":1,"customerName":"客户-1","amount":100}}
+=== stats ===
+{"backfillCount":1}
+=== 再查(预期 L2 命中顺手回填后的 L1) ===
+{"source":"L1","order":{"id":1,"customerName":"客户-1","amount":100}}
+
+Redis 侧实证(redis-cli 实抓):
+keys *                     ->  cachelab:order:1
+type cachelab:order:1      ->  hash
+hkeys cachelab:order:1     ->  absexp / sldexp / data
+hget cachelab:order:1 data ->  {"Id":1,"CustomerName":"\u5BA2\u6237-1","Amount":100}
+（实现层把值连同过期元数据存成哈希, data 字段即序列化后的 JSON 字节）

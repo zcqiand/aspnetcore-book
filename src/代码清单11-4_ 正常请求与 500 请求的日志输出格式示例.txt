@@ -1,0 +1,25 @@
+（格式示例, 时间与毫秒数为占位值, 消息与字段库的渲染形状以读者机器实际输出为准;
+ 行首方括号是 Serilog 的控制台样式, 前几章 info:/fail: 前缀不再出现;
+ 句尾花括号段是字段库, 由清单11-2 模板里的 {Properties:j} 请出来, 只装消息之外的上下文字段:
+ SourceContext 标明日志出自谁, RequestId 与 ConnectionId 是宿主生成的长串连接标识, 图中以 … 截短;
+ 消息模板绑定的值不再重复进字段库, 照常渲染在消息文本里）
+
+PS D:\Code\LogLab> dotnet run
+[10:23:01 INF] Now listening on: http://localhost:5500 {SourceContext="Microsoft.Hosting.Lifetime", EventId={"Id": 14, "Name": "ListeningOnAddress"}}
+（启动其余各行与前几章同义, 此处省略; 程序停驻等请求）
+
+（另开一个终端访问 /orders/1, 得 200 与「订单2: 阿里山茶行 x1」; 同一时刻应用终端打出三行）
+[10:23:12 INF] 收到订单查询: OrderId=1 {SourceContext="LogLab", RequestId="0HN1TQ…", RequestPath="/orders/1", ConnectionId="0HN1TQ…"}
+[10:23:12 INF] 订单查询成功: {"Id": 2, "Description": "阿里山茶行 x1"} {SourceContext="LogLab", RequestId="0HN1TQ…", RequestPath="/orders/1", ConnectionId="0HN1TQ…"}
+[10:23:12 INF] HTTP GET /orders/1 responded 200 in 8.3280 ms {SourceContext="Serilog.AspNetCore.RequestLoggingMiddleware", RequestId="0HN1TQ…", ConnectionId="0HN1TQ…"}
+（三行次序固定: 进入、成功、完成; 完成行由请求日志中间件打出, 方法、路径、状态码、耗时都渲染在消息文本里;
+ 成功行消息里渲染的是隔壁订单的内容, 消息里的 Id=2 与 URL 里的 1 对不上, 暗伤在消息文本层已经现形）
+
+（把 URL 换成 /orders/3, 得 500 与「查询订单失败, 请稍后重试。」; 应用终端打出三行）
+[10:23:30 INF] 收到订单查询: OrderId=3 {SourceContext="LogLab", RequestId="0HN1TQ…", RequestPath="/orders/3", ConnectionId="0HN1TQ…"}
+[10:23:30 ERR] 订单查询失败: OrderId=3 {SourceContext="LogLab", RequestId="0HN1TQ…", RequestPath="/orders/3", ConnectionId="0HN1TQ…"}
+System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Program.<Main>(String[] args)（堆栈自上而下指向 Program.cs 中越界取值的那一行, 具体行号以实际输出为准, 其下是调用链逐层行号）
+[10:23:30 ERR] HTTP GET /orders/3 responded 500 in 1.8373 ms {SourceContext="Serilog.AspNetCore.RequestLoggingMiddleware", RequestId="0HN1TQ…", ConnectionId="0HN1TQ…"}
+（对照 /orders/1: 成功行缺席, 多出 ERR 一行与其下的异常堆栈; 完成行按状态码定级, ≥500 记 Error, 故这一行也是 ERR;
+ 三行次序未乱, 依次为进入(INF)、失败(ERR)、完成(ERR)）

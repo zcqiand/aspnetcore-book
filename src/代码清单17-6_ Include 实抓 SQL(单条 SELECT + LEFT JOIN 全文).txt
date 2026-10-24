@@ -1,0 +1,10 @@
+（真机实抓; 三发逐字一致, 每发仅此一条查询, 版本号以 x 代替）
+
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (142ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT o."Id", o."Amount", o."Customer", o."OrderNumber", o0."Id", o0."OrderId", o0."Product", o0."Quantity", o0."UnitPrice"
+      FROM "Orders" AS o
+      LEFT JOIN "OrderItems" AS o0 ON o."Id" = o0."OrderId"
+      ORDER BY o."Id"
+（值得注意三处: 主表列与明细列并列在一条 SELECT 里; LEFT JOIN 保证零明细的订单也在结果里,
+ 行数被乘出来的代价藏在结果集内部, EF 组装对象时去重, 日志里永远只此一条; ORDER BY 归主表管）

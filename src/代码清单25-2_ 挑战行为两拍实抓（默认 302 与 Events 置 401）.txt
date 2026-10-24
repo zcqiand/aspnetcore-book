@@ -1,0 +1,17 @@
+（两拍输出均为真机实抓；Date 头各拍照录首拍）
+
+PS D:\Code\AuthLab> curl -s -i http://localhost:6400/me
+HTTP/1.1 302 Found
+Content-Length: 0
+Date: Wed, 30 Sep 2026 09:37:38 GMT
+Server: Kestrel
+Location: http://localhost:6400/Account/Login?ReturnUrl=%2Fme
+（默认挑战：302 重定向到 /Account/Login，LoginPath 默认值原样生效，正文空体；
+ ReturnUrl 把来路记下，等浏览器登录成功后跳回）
+
+PS D:\Code\AuthLab> curl -s -i http://localhost:6400/me
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Wed, 30 Sep 2026 09:38:07 GMT
+Server: Kestrel
+（Events 一笔配置后同一发请求：401，重定向头消失，正文仍为空体。此拍摄于登记状态码页之前的中间阶段；照最终清单25-1 复现此拍得的是 problem+json 契约体，见清单25-4 拍①）

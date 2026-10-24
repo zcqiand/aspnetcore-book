@@ -1,0 +1,88 @@
+（格式示例, 各配置值与控制台提示均为占位值, 以读者机器实际输出为准;
+ 端口 5400 来自每一步的 --urls 参数; 表 10-1 的每一格都对应下面五步中的某一步,
+ 对应关系已在各步标注）
+
+（前置操作: 为让第 1 步看到「仅基线层」的干净起点, 先用编辑器把清单10-3 加进
+ appsettings.Development.json 的 Report 节整段暂时删去, 第 2 步再原样加回;
+ 机密层不提前设——若你已按清单10-4 写入过 Report:Title, 先用
+ dotnet user-secrets remove "Report:Title" 撤掉它, 第 3 步再重新写入,
+ 否则机密层压过基线层, 第 1 步的「仅基线层」起点不成立）
+
+===== 第 1 步: 仅基线层(对应表 10-1 的 appsettings.json 一列) =====
+PS D:\Code\ConfigLab> dotnet run --urls=http://localhost:5400
+Building...
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://localhost:5400
+（另开一个终端发请求）
+PS D:\Code\ConfigLab> curl http://localhost:5400/config
+环境                => Development
+Report:Title         => 基础层报表标题
+Report:MaxRows       => 100
+Report:RetryCount    => 3
+Report:DefaultFormat => csv
+强类型视图          => Title=基础层报表标题, MaxRows=100, RetryCount=3, DefaultFormat=csv
+（本步是实验起点: 树里只登记了基线层, 四个键全取清单10-2 的默认值,
+ 与强类型视图逐字段一致——一个绑定器, 两副长相）
+
+===== 第 2 步: 环境层覆盖 MaxRows(对应表 10-1 的 appsettings.Development.json 一列; 免重启) =====
+（保持应用运行不要重启, 把清单10-3 的 "Report": { "MaxRows": 200 } 节原样加回
+ appsettings.Development.json 并保存——JSON 配置文件默认热重载, 免重启即生效）
+PS D:\Code\ConfigLab> curl http://localhost:5400/config
+环境                => Development
+Report:Title         => 基础层报表标题
+Report:MaxRows       => 200
+Report:RetryCount    => 3
+Report:DefaultFormat => csv
+强类型视图          => Title=基础层报表标题, MaxRows=100, RetryCount=3, DefaultFormat=csv
+（只有裸键行 MaxRows 换成 200, 其余三行与第 1 步逐字相同——环境层只写了 MaxRows 一个差异键,
+ Title/RetryCount/DefaultFormat 穿透到基线层取值, 这就是「环境层只写差异键」的实证;
+ 强类型视图仍停在启动时解析的旧值: 它走 IOptions, 不随热重载更新(第 9 章清单9-5 的对账口径:
+ IOptions 守旧值, IOptionsSnapshot/IOptionsMonitor 才即时), 重启后与裸键行重归一致）
+
+===== 第 3 步: 用户机密覆盖 Title(对应表 10-1 的用户机密一列; 免重启) =====
+（应用继续运行, 回到原来的 ConfigLab 终端执行——secrets.json 与 appsettings 文件
+ 一样默认热重载, 机密改完同样免重启）
+PS D:\Code\ConfigLab> dotnet user-secrets set "Report:Title" "机密层报表标题"
+PS D:\Code\ConfigLab> curl http://localhost:5400/config
+环境                => Development
+Report:Title         => 机密层报表标题
+Report:MaxRows       => 200
+Report:RetryCount    => 3
+Report:DefaultFormat => csv
+强类型视图          => Title=基础层报表标题, MaxRows=100, RetryCount=3, DefaultFormat=csv
+（只有裸键行 Title 换成机密层的值, MaxRows 仍是环境层的 200——机密层登记在环境层之后,
+ 但它只写了 Title 一个键, 没动 MaxRows, 所以两层各自只覆盖自己写过的键;
+ 强类型视图仍停旧值, 缘由见第 2 步括注）
+
+===== 第 4 步: 环境变量覆盖 MaxRows(对应表 10-1 的环境变量一列; 需重启) =====
+（先在运行应用的终端 Ctrl+C 停掉应用, 再在同一个终端设环境变量并重启——
+ 环境变量不参与热重载, 改完必须重启才进配置树）
+PS D:\Code\ConfigLab> $env:Report__MaxRows = "300"
+PS D:\Code\ConfigLab> dotnet run --urls=http://localhost:5400
+（另开终端请求）
+PS D:\Code\ConfigLab> curl http://localhost:5400/config
+环境                => Development
+Report:Title         => 机密层报表标题
+Report:MaxRows       => 300
+Report:RetryCount    => 3
+Report:DefaultFormat => csv
+强类型视图          => Title=机密层报表标题, MaxRows=300, RetryCount=3, DefaultFormat=csv
+（MaxRows 从 200 换成 300, Title 仍是机密层的值——环境变量登记在机密层之后,
+ 后登记者覆盖先登记者, 但同样只覆盖它写过的键;
+ __ 是环境变量里的层级分隔符, 等价于 JSON 键名里的冒号, Report__MaxRows 即 Report:MaxRows;
+ $env: 只影响当前这个 shell 会话, 不动 launchSettings.json, 所以环境仍是 Development）
+
+===== 第 5 步: 命令行参数覆盖 DefaultFormat(对应表 10-1 的命令行一列; 同 shell 需重启) =====
+（第 4 步那个 shell 里 $env:Report__MaxRows 仍在生效, 原地 Ctrl+C 停掉后带参数重启）
+PS D:\Code\ConfigLab> dotnet run --urls=http://localhost:5400 --Report:DefaultFormat=json
+（另开终端请求）
+PS D:\Code\ConfigLab> curl http://localhost:5400/config
+环境                => Development
+Report:Title         => 机密层报表标题
+Report:MaxRows       => 300
+Report:RetryCount    => 3
+Report:DefaultFormat => json
+强类型视图          => Title=机密层报表标题, MaxRows=300, RetryCount=3, DefaultFormat=json
+（命令行参数为最高优先层, 压过前面所有层; 命令行参数的层级分隔符就是冒号本身,
+ 键=值写法下直接写 --Report:DefaultFormat=json 即可; 双下划线只是环境变量的分隔符写法,
+ 命令行提供程序不认 __, 两者不要混写; 五步走完, 表 10-1 的最右一列就是这五步叠完的最终结果）

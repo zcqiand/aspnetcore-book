@@ -1,0 +1,15 @@
+（实验前置: bug 保持清单11-3 原样未修复; 把清单11-2 里 Serilog:MinimumLevel:Default 的值改成 Warning,
+ 保存后重启应用(Serilog 只在启动时读配置, 不热生效); 然后各访问一次 /orders/1 与 /orders/3）
+
+PS D:\Code\LogLab> curl http://localhost:5500/orders/1
+订单2: 阿里山茶行 x1
+（200 照常返回, 但应用终端一行日志都没有: 进入行与成功行都是 Information, 被闸拦下）
+
+PS D:\Code\LogLab> curl http://localhost:5500/orders/3
+查询订单失败, 请稍后重试。
+[10:31:12 ERR] 订单查询失败: OrderId=3 {SourceContext="LogLab", RequestId="0HN1TQ…", RequestPath="/orders/3", ConnectionId="0HN1TQ…"}
+System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Program.<Main>(String[] args)（堆栈以实际输出为准）
+[10:31:12 ERR] HTTP GET /orders/3 responded 500 in 2.1264 ms {SourceContext="Serilog.AspNetCore.RequestLoggingMiddleware", RequestId="0HN1TQ…", ConnectionId="0HN1TQ…"}
+（错误行与完成行都在, 两条都是 ERR: 完成行按状态码定级, ≥500 记 Error, Warning 闸拦不住; 被拦下的是 Information 级的进入行与成功行;
+ 噪音省了, 进入与成功两行的排案细节也一并省了; 看完把 Default 拨回 Information 并重启, 再继续本节的定位与修复）
